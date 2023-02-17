@@ -1,0 +1,40 @@
+{
+  "name": "@archsense/root",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Monorepo for code visualization tool",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArchSense/root.git"
+  },
+  "author": "Sergey Bolshchikov <sergey@bolshchikov.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ArchSense/root/issues"
+  },
+  "homepage": "https://github.com/ArchSense/root#readme",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build:all": "npm run build --workspaces"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "prettier": {
+    "bracketSpacing": true,
+    "printWidth": 100,
+    "requirePragma": false,
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "useTabs": false
+  },
+  "devDependencies": {
+    "husky": "^8.0.3"
+  }
+}
