@@ -17,7 +17,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build:all": "npm run build --workspaces"
+    "build:all": "npm run build --workspaces",
+    "release:all": "npm run release --workspaces"
   },
   "husky": {
     "hooks": {
