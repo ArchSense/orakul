@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ArchSense/scout.git"
+    "url": "https://github.com/ArchSense/orakul/tree/main/packages/scout"
   },
   "keywords": [
     "architecture",
@@ -32,9 +32,9 @@
   "author": "Sergey Bolshchikov<sergey@bolshchikov.net>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ArchSense/scout/issues"
+    "url": "https://github.com/ArchSense/orakul/issues"
   },
-  "homepage": "https://github.com/ArchSense/scout#readme",
+  "homepage": "https://github.com/ArchSense/orakul/tree/main/packages/scout",
   "devDependencies": {
     "@types/jest": "^29.4.0",
     "@types/node": "^18.13.0",

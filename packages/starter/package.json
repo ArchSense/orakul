@@ -1,7 +1,7 @@
 {
   "name": "@archsense/orakul-starter",
   "version": "0.0.1",
-  "description": "",
+  "description": "Visualize your architecture that make sense",
   "author": "Sergey Bolshchikov <sergey@bolshchikov.net>",
   "publishConfig": {
     "access": "public"
@@ -10,6 +10,14 @@
     "orakul": "./bin/cli.js"
   },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArchSense/orakul"
+  },
+  "bugs": {
+    "url": "https://github.com/ArchSense/orakul/issues"
+  },
+  "homepage": "https://github.com/ArchSense/orakul",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
