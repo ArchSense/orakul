@@ -1,0 +1,2704 @@
+{
+  "companies": {
+    "tipalti": {
+      "id": "tipalti",
+      "domains": [
+        "po-management",
+        "bills",
+        "sync"
+      ]
+    }
+  },
+  "domains": {
+    "po-management": {
+      "id": "po-management",
+      "owner": "tipalti",
+      "services": [
+        "po-service",
+        "employees"
+      ]
+    },
+    "bills": {
+      "id": "bills",
+      "owner": "tipalti",
+      "services": []
+    },
+    "sync": {
+      "id": "sync",
+      "owner": "tipalti",
+      "services": []
+    }
+  },
+  "services": {
+    "po-service": {
+      "id": "po-service",
+      "owner": "po-management",
+      "components": {
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/main.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/main.ts",
+          "name": "main",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/app.module.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/logging/gql-logger.ts"
+          ],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/logging/gql-logger.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/logging/gql-logger.ts",
+          "name": "gql-logger",
+          "imports": [],
+          "exports": [
+            {
+              "id": "GQLLogger",
+              "name": "GQLLogger",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "GQLLogger.verbose",
+                  "name": "verbose",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GQLLogger.debug",
+                  "name": "debug",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GQLLogger.log",
+                  "name": "log",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GQLLogger.warn",
+                  "name": "warn",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GQLLogger.error",
+                  "name": "error",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/app.module.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/app.module.ts",
+          "name": "app.module",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/app.controller.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/app.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-manager.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-validator.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/graphql-types.config.js",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/health-checks.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/grn-manager.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-store.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/clock.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/grn-store.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/grn-validator.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/logging.plugin.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/counter/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/counter/counter.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/logging/gql-logging.module.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/message-service/message.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/invoice-store.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/invoice-manager.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/tipalti-resources/tipalti-resources.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/resolvers/po.resolver.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/resolvers/grn.resolver.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/resolvers/invoice.resolver.ts"
+          ],
+          "exports": [
+            {
+              "id": "PoServiceModule",
+              "name": "PoServiceModule",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "PoServiceModule.onModuleInit",
+                  "name": "onModuleInit",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoServiceModule.initPoMsgService",
+                  "name": "initPoMsgService",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoServiceModule.initGRNMsgService",
+                  "name": "initGRNMsgService",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/resolvers/invoice.resolver.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/resolvers/invoice.resolver.ts",
+          "name": "invoice.resolver",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/authentication/roles.guard.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/tipalti-resources/tipalti-resources.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/invoice-manager.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/authentication/roles.decorator.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/graphql.types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-manager.service.ts"
+          ],
+          "exports": [
+            {
+              "id": "InvoiceResolver",
+              "name": "InvoiceResolver",
+              "apiPath": "/Invoice",
+              "members": [
+                {
+                  "id": "InvoiceResolver.invoicesByRequestIds",
+                  "name": "invoicesByRequestIds",
+                  "method": "QUERY",
+                  "apiPath": "/Invoice/"
+                },
+                {
+                  "id": "InvoiceResolver.invoicesByPayerAndPurchaseOderNumbers",
+                  "name": "invoicesByPayerAndPurchaseOderNumbers",
+                  "method": "QUERY",
+                  "apiPath": "/Invoice/"
+                },
+                {
+                  "id": "InvoiceResolver.upsertInvoice",
+                  "name": "upsertInvoice",
+                  "method": "MUTATION",
+                  "apiPath": "/Invoice/"
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-manager.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-manager.service.ts",
+          "name": "po-manager.service",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-validator.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/common-types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/utils/message-broker.utils.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-store.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/graphql.types.ts"
+          ],
+          "exports": [
+            {
+              "id": "PoManagerService",
+              "name": "PoManagerService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "PoManagerService.createPo",
+                  "name": "createPo",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.getPosByUpdatedAfterDate",
+                  "name": "getPosByUpdatedAfterDate",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.getPosByPublicId",
+                  "name": "getPosByPublicId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.getPosById",
+                  "name": "getPosById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.getPosByRequestsId",
+                  "name": "getPosByRequestsId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.poByTenantIdAndPoNumber",
+                  "name": "poByTenantIdAndPoNumber",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.updatePo",
+                  "name": "updatePo",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.upsertPo",
+                  "name": "upsertPo",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.closePoById",
+                  "name": "closePoById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.closePosById",
+                  "name": "closePosById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.deleteById",
+                  "name": "deleteById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.deleteByPoNumber",
+                  "name": "deleteByPoNumber",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.resendPurchaseOrderToMessageBroker",
+                  "name": "resendPurchaseOrderToMessageBroker",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoManagerService.publishPoEvent",
+                  "name": "publishPoEvent",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/graphql.types.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/graphql.types.ts",
+          "name": "graphql.types",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-store.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-store.ts",
+          "name": "po-store",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/common-types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/clock.ts"
+          ],
+          "exports": [
+            {
+              "id": "InMemoryPurchaseOrdersStore",
+              "name": "InMemoryPurchaseOrdersStore",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "InMemoryPurchaseOrdersStore.getPosByUpdatedAfterDate",
+                  "name": "getPosByUpdatedAfterDate",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryPurchaseOrdersStore.getPosByPublicId",
+                  "name": "getPosByPublicId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryPurchaseOrdersStore.createPo",
+                  "name": "createPo",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryPurchaseOrdersStore.getPosById",
+                  "name": "getPosById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryPurchaseOrdersStore.getPosByRequestsId",
+                  "name": "getPosByRequestsId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryPurchaseOrdersStore.getPoByTenantIdAndPoNumber",
+                  "name": "getPoByTenantIdAndPoNumber",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryPurchaseOrdersStore.updatePo",
+                  "name": "updatePo",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryPurchaseOrdersStore.upsertPo",
+                  "name": "upsertPo",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryPurchaseOrdersStore.deleteById",
+                  "name": "deleteById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryPurchaseOrdersStore.deleteByPurchaseOrderNumber",
+                  "name": "deleteByPurchaseOrderNumber",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryPurchaseOrdersStore.delete",
+                  "name": "delete",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryPurchaseOrdersStore.closePoById",
+                  "name": "closePoById",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "MongoPurchaseOrdersStore",
+              "name": "MongoPurchaseOrdersStore",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "MongoPurchaseOrdersStore.getPosByUpdatedAfterDate",
+                  "name": "getPosByUpdatedAfterDate",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoPurchaseOrdersStore.getPosByPublicId",
+                  "name": "getPosByPublicId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoPurchaseOrdersStore.createPo",
+                  "name": "createPo",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoPurchaseOrdersStore.getPosById",
+                  "name": "getPosById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoPurchaseOrdersStore.getPosByRequestsId",
+                  "name": "getPosByRequestsId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoPurchaseOrdersStore.updatePo",
+                  "name": "updatePo",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoPurchaseOrdersStore.upsertPo",
+                  "name": "upsertPo",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoPurchaseOrdersStore.deleteById",
+                  "name": "deleteById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoPurchaseOrdersStore.deleteByPurchaseOrderNumber",
+                  "name": "deleteByPurchaseOrderNumber",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoPurchaseOrdersStore.closePoById",
+                  "name": "closePoById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoPurchaseOrdersStore.getPoByTenantIdAndPoNumber",
+                  "name": "getPoByTenantIdAndPoNumber",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/clock.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/clock.ts",
+          "name": "clock",
+          "imports": [],
+          "exports": [
+            {
+              "id": "FakeClock",
+              "name": "FakeClock",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "FakeClock.currentTime",
+                  "name": "currentTime",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "SystemClock",
+              "name": "SystemClock",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "SystemClock.currentTime",
+                  "name": "currentTime",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/common-types.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/common-types.ts",
+          "name": "common-types",
+          "imports": [],
+          "exports": [
+            {
+              "id": "TenantId",
+              "name": "TenantId",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "Vendor",
+              "name": "Vendor",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "Subsidary",
+              "name": "Subsidary",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "User",
+              "name": "User",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "Metadata",
+              "name": "Metadata",
+              "apiPath": "",
+              "members": []
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/types.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/types.ts",
+          "name": "types",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/common-types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/timestamp.plugin.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/deepChange.plugin.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/customFieldsAndItemsPlugin.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/publicid.plugin.ts"
+          ],
+          "exports": [
+            {
+              "id": "Approver",
+              "name": "Approver",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "CustomField",
+              "name": "CustomField",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "AttachedFile",
+              "name": "AttachedFile",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "Request",
+              "name": "Request",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "ERPResult",
+              "name": "ERPResult",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "PoPhoneDetails",
+              "name": "PoPhoneDetails",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "PoShippingAddress",
+              "name": "PoShippingAddress",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "PoPunchOutCredentials",
+              "name": "PoPunchOutCredentials",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "PoPunchOutStatusFields",
+              "name": "PoPunchOutStatusFields",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "PoPunchOutStatus",
+              "name": "PoPunchOutStatus",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "PoPunchOut",
+              "name": "PoPunchOut",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "PurchaseOrderModel",
+              "name": "PurchaseOrderModel",
+              "apiPath": "",
+              "members": []
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/publicid.plugin.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/publicid.plugin.ts",
+          "name": "publicid.plugin",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/utils/publicId.utils.ts"
+          ],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/utils/publicId.utils.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/utils/publicId.utils.ts",
+          "name": "publicId.utils",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/customFieldsAndItemsPlugin.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/customFieldsAndItemsPlugin.ts",
+          "name": "customFieldsAndItemsPlugin",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/types.ts"
+          ],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/deepChange.plugin.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/deepChange.plugin.ts",
+          "name": "deepChange.plugin",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/timestamp.plugin.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/timestamp.plugin.ts",
+          "name": "timestamp.plugin",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/utils/message-broker.utils.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/utils/message-broker.utils.ts",
+          "name": "message-broker.utils",
+          "imports": [],
+          "exports": [
+            {
+              "id": "MessageBrokerUtils",
+              "name": "MessageBrokerUtils",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "MessageBrokerUtils.aValidTipaltiMessage",
+                  "name": "aValidTipaltiMessage",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MessageBrokerUtils.publishEvent",
+                  "name": "publishEvent",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-validator.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-validator.service.ts",
+          "name": "po-validator.service",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-store.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-manager.service.ts"
+          ],
+          "exports": [
+            {
+              "id": "PoValidatorService",
+              "name": "PoValidatorService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "PoValidatorService.validate",
+                  "name": "validate",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoValidatorService.isPoExists",
+                  "name": "isPoExists",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoValidatorService.validatePurchaseOrder",
+                  "name": "validatePurchaseOrder",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoValidatorService.validateUpsertPo",
+                  "name": "validateUpsertPo",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "PoValidatorService.validatePO",
+                  "name": "validatePO",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "TenantValidator",
+              "name": "TenantValidator",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "TenantValidator.validateField",
+                  "name": "validateField",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "VendorValidator",
+              "name": "VendorValidator",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "VendorValidator.validateField",
+                  "name": "validateField",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "NonEmptyStringValidator",
+              "name": "NonEmptyStringValidator",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "NonEmptyStringValidator.validateField",
+                  "name": "validateField",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/authentication/roles.decorator.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/authentication/roles.decorator.ts",
+          "name": "roles.decorator",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/invoice-manager.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/invoice-manager.service.ts",
+          "name": "invoice-manager.service",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/invoice-store.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/types.ts"
+          ],
+          "exports": [
+            {
+              "id": "InvoiceManagerService",
+              "name": "InvoiceManagerService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "InvoiceManagerService.getByInvoiceExternalIds",
+                  "name": "getByInvoiceExternalIds",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InvoiceManagerService.getByPoNumbersAndPayerId",
+                  "name": "getByPoNumbersAndPayerId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InvoiceManagerService.upsertInvoiceFromMessage",
+                  "name": "upsertInvoiceFromMessage",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InvoiceManagerService.upsertInvoice",
+                  "name": "upsertInvoice",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/types.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/types.ts",
+          "name": "types",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/common-types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/graphql.types.ts"
+          ],
+          "exports": [
+            {
+              "id": "InvoiceModel",
+              "name": "InvoiceModel",
+              "apiPath": "",
+              "members": []
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/invoice-store.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/invoice-store.ts",
+          "name": "invoice-store",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/clock.ts"
+          ],
+          "exports": [
+            {
+              "id": "MongoInvoiceStore",
+              "name": "MongoInvoiceStore",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "MongoInvoiceStore.getByPoNumbersAndPayerId",
+                  "name": "getByPoNumbersAndPayerId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoInvoiceStore.upsertInvoice",
+                  "name": "upsertInvoice",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoInvoiceStore.getByIds",
+                  "name": "getByIds",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/tipalti-resources/tipalti-resources.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/tipalti-resources/tipalti-resources.service.ts",
+          "name": "tipalti-resources.service",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/tipalti-resources/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/tipalti-resources/queries.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/types.ts"
+          ],
+          "exports": [
+            {
+              "id": "TipaltiResourcesService",
+              "name": "TipaltiResourcesService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "TipaltiResourcesService.getAssociatedInvoices",
+                  "name": "getAssociatedInvoices",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "TipaltiResourcesService.getAssociatedInvoicesByPoNumberAndPayerId",
+                  "name": "getAssociatedInvoicesByPoNumberAndPayerId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "TipaltiResourcesService.getAssociatedInvoicesFromTipalti",
+                  "name": "getAssociatedInvoicesFromTipalti",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "TipaltiResourcesService.parseInvoice",
+                  "name": "parseInvoice",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "TipaltiResourcesService.mappedInvoices",
+                  "name": "mappedInvoices",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "TipaltiResourcesService.convertStatusToDisplayName",
+                  "name": "convertStatusToDisplayName",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/tipalti-resources/queries.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/tipalti-resources/queries.ts",
+          "name": "queries",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/tipalti-resources/types.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/tipalti-resources/types.ts",
+          "name": "types",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/authentication/roles.guard.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/authentication/roles.guard.ts",
+          "name": "roles.guard",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/authentication/roles.decorator.ts"
+          ],
+          "exports": [
+            {
+              "id": "RolesGuard",
+              "name": "RolesGuard",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "RolesGuard.canActivate",
+                  "name": "canActivate",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "RolesGuard.matchRoles",
+                  "name": "matchRoles",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "RolesGuard.validateRole",
+                  "name": "validateRole",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "RolesGuard.validateApiKey",
+                  "name": "validateApiKey",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "RolesGuard.validateIdsToken",
+                  "name": "validateIdsToken",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/resolvers/grn.resolver.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/resolvers/grn.resolver.ts",
+          "name": "grn.resolver",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/authentication/roles.guard.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/grn-manager.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/graphql.types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/authentication/roles.decorator.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/common-types.ts"
+          ],
+          "exports": [
+            {
+              "id": "GrnResolver",
+              "name": "GrnResolver",
+              "apiPath": "/GRN",
+              "members": [
+                {
+                  "id": "GrnResolver.receivedItemsByTenantIdAndReceiptNumber",
+                  "name": "receivedItemsByTenantIdAndReceiptNumber",
+                  "method": "QUERY",
+                  "apiPath": "/GRN/"
+                },
+                {
+                  "id": "GrnResolver.receivedItemsByOrdersId",
+                  "name": "receivedItemsByOrdersId",
+                  "method": "QUERY",
+                  "apiPath": "/GRN/"
+                },
+                {
+                  "id": "GrnResolver.receivedItemsById",
+                  "name": "receivedItemsById",
+                  "method": "QUERY",
+                  "apiPath": "/GRN/"
+                },
+                {
+                  "id": "GrnResolver.receivedItemsByPublicId",
+                  "name": "receivedItemsByPublicId",
+                  "method": "QUERY",
+                  "apiPath": "/GRN/"
+                },
+                {
+                  "id": "GrnResolver.receivedItemsByUpdatedAfterDate",
+                  "name": "receivedItemsByUpdatedAfterDate",
+                  "method": "QUERY",
+                  "apiPath": "/GRN/"
+                },
+                {
+                  "id": "GrnResolver.markItemAsReceived",
+                  "name": "markItemAsReceived",
+                  "method": "MUTATION",
+                  "apiPath": "/GRN/"
+                },
+                {
+                  "id": "GrnResolver.updateReceivedItem",
+                  "name": "updateReceivedItem",
+                  "method": "MUTATION",
+                  "apiPath": "/GRN/"
+                },
+                {
+                  "id": "GrnResolver.deleteReceivedItemById",
+                  "name": "deleteReceivedItemById",
+                  "method": "MUTATION",
+                  "apiPath": "/GRN/"
+                },
+                {
+                  "id": "GrnResolver.deleteReceivedItemByReceiptNumber",
+                  "name": "deleteReceivedItemByReceiptNumber",
+                  "method": "MUTATION",
+                  "apiPath": "/GRN/"
+                },
+                {
+                  "id": "GrnResolver.upsertReceivedItem",
+                  "name": "upsertReceivedItem",
+                  "method": "MUTATION",
+                  "apiPath": "/GRN/"
+                },
+                {
+                  "id": "GrnResolver.resendGrnToMessageBroker",
+                  "name": "resendGrnToMessageBroker",
+                  "method": "MUTATION",
+                  "apiPath": "/GRN/"
+                },
+                {
+                  "id": "GrnResolver.deleteReceivedItemsByOrderIds",
+                  "name": "deleteReceivedItemsByOrderIds",
+                  "method": "MUTATION",
+                  "apiPath": "/GRN/"
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/types.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/types.ts",
+          "name": "types",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/common-types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/timestamp.plugin.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/deepChange.plugin.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/counter/counter.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/publicid.plugin.ts"
+          ],
+          "exports": [
+            {
+              "id": "Receipt",
+              "name": "Receipt",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "Quantity",
+              "name": "Quantity",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "GRNItemAttachment",
+              "name": "GRNItemAttachment",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "GRNItemDateRange",
+              "name": "GRNItemDateRange",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "GRNItem",
+              "name": "GRNItem",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "CreateGRNModel",
+              "name": "CreateGRNModel",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "PurchaseOrdersNumber",
+              "name": "PurchaseOrdersNumber",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "GRNMetadata",
+              "name": "GRNMetadata",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "GRNModel",
+              "name": "GRNModel",
+              "apiPath": "",
+              "members": []
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/counter/counter.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/counter/counter.service.ts",
+          "name": "counter.service",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/counter/types.ts"
+          ],
+          "exports": [
+            {
+              "id": "CounterService",
+              "name": "CounterService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "CounterService.counterPlugin",
+                  "name": "counterPlugin",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/counter/types.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/counter/types.ts",
+          "name": "types",
+          "imports": [],
+          "exports": [
+            {
+              "id": "CounterModel",
+              "name": "CounterModel",
+              "apiPath": "",
+              "members": []
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/grn-manager.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/grn-manager.service.ts",
+          "name": "grn-manager.service",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/common-types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/grn-store.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-manager.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/grn-validator.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/utils/message-broker.utils.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/graphql.types.ts"
+          ],
+          "exports": [
+            {
+              "id": "GrnManagerService",
+              "name": "GrnManagerService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "GrnManagerService.create",
+                  "name": "create",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.update",
+                  "name": "update",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.getGrnsById",
+                  "name": "getGrnsById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.getGrnsByOrdersId",
+                  "name": "getGrnsByOrdersId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.getGrnsByPublicIds",
+                  "name": "getGrnsByPublicIds",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.getGrnsByByUpdatedAt",
+                  "name": "getGrnsByByUpdatedAt",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.getGrnsByTenantIdAndReceiptNumber",
+                  "name": "getGrnsByTenantIdAndReceiptNumber",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.deleteById",
+                  "name": "deleteById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.deleteReceivedItemsByOrderIds",
+                  "name": "deleteReceivedItemsByOrderIds",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.deleteByReceiptNumber",
+                  "name": "deleteByReceiptNumber",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.upsert",
+                  "name": "upsert",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.resendGrnToMessageBroker",
+                  "name": "resendGrnToMessageBroker",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.publishGrnEvent",
+                  "name": "publishGrnEvent",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.getPoData",
+                  "name": "getPoData",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.validatePublishGRN",
+                  "name": "validatePublishGRN",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.initDataUsingPoId",
+                  "name": "initDataUsingPoId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.validateIfExists",
+                  "name": "validateIfExists",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnManagerService.validateGrn",
+                  "name": "validateGrn",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/grn-validator.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/grn-validator.service.ts",
+          "name": "grn-validator.service",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-manager.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/types.ts"
+          ],
+          "exports": [
+            {
+              "id": "GrnValidatorService",
+              "name": "GrnValidatorService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "GrnValidatorService.validate",
+                  "name": "validate",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnValidatorService.validatePoStatus",
+                  "name": "validatePoStatus",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GrnValidatorService.isPoHasReceivedItem",
+                  "name": "isPoHasReceivedItem",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/grn-store.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/grn-store.ts",
+          "name": "grn-store",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/common-types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/clock.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/grns/types.ts"
+          ],
+          "exports": [
+            {
+              "id": "InMemoryGRNStore",
+              "name": "InMemoryGRNStore",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "InMemoryGRNStore.create",
+                  "name": "create",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryGRNStore.getGrnsById",
+                  "name": "getGrnsById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryGRNStore.getGrnsByOrderIds",
+                  "name": "getGrnsByOrderIds",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryGRNStore.getGrnsByPublicIds",
+                  "name": "getGrnsByPublicIds",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryGRNStore.getGrnsByUpdatedAt",
+                  "name": "getGrnsByUpdatedAt",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryGRNStore.getReceivedItemsByTenantIdAndReceiptNumber",
+                  "name": "getReceivedItemsByTenantIdAndReceiptNumber",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryGRNStore.update",
+                  "name": "update",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryGRNStore.upsert",
+                  "name": "upsert",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryGRNStore.deleteById",
+                  "name": "deleteById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryGRNStore.deleteByReceiptNumber",
+                  "name": "deleteByReceiptNumber",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryGRNStore.delete",
+                  "name": "delete",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryGRNStore.deleteAll",
+                  "name": "deleteAll",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "MongoGRNStore",
+              "name": "MongoGRNStore",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "MongoGRNStore.create",
+                  "name": "create",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoGRNStore.getGrnsById",
+                  "name": "getGrnsById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoGRNStore.getGrnsByOrderIds",
+                  "name": "getGrnsByOrderIds",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoGRNStore.getGrnsByPublicIds",
+                  "name": "getGrnsByPublicIds",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoGRNStore.getGrnsByUpdatedAt",
+                  "name": "getGrnsByUpdatedAt",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoGRNStore.update",
+                  "name": "update",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoGRNStore.upsert",
+                  "name": "upsert",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoGRNStore.deleteById",
+                  "name": "deleteById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoGRNStore.deleteByReceiptNumber",
+                  "name": "deleteByReceiptNumber",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoGRNStore.getReceivedItemsByTenantIdAndReceiptNumber",
+                  "name": "getReceivedItemsByTenantIdAndReceiptNumber",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/resolvers/po.resolver.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/resolvers/po.resolver.ts",
+          "name": "po.resolver",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/authentication/roles.guard.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/po-manager.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/graphql.types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/purchase-orders/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/authentication/roles.decorator.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/common-types.ts"
+          ],
+          "exports": [
+            {
+              "id": "POResolver",
+              "name": "POResolver",
+              "apiPath": "/PurchaseOrder",
+              "members": [
+                {
+                  "id": "POResolver.poByTenantIdAndPoNumber",
+                  "name": "poByTenantIdAndPoNumber",
+                  "method": "QUERY",
+                  "apiPath": "/PurchaseOrder/"
+                },
+                {
+                  "id": "POResolver.posByRequestsId",
+                  "name": "posByRequestsId",
+                  "method": "QUERY",
+                  "apiPath": "/PurchaseOrder/"
+                },
+                {
+                  "id": "POResolver.posByUpdatedAfterDate",
+                  "name": "posByUpdatedAfterDate",
+                  "method": "QUERY",
+                  "apiPath": "/PurchaseOrder/"
+                },
+                {
+                  "id": "POResolver.posByPublicId",
+                  "name": "posByPublicId",
+                  "method": "QUERY",
+                  "apiPath": "/PurchaseOrder/"
+                },
+                {
+                  "id": "POResolver.posById",
+                  "name": "posById",
+                  "method": "QUERY",
+                  "apiPath": "/PurchaseOrder/"
+                },
+                {
+                  "id": "POResolver.createPurchaseOrder",
+                  "name": "createPurchaseOrder",
+                  "method": "MUTATION",
+                  "apiPath": "/PurchaseOrder/"
+                },
+                {
+                  "id": "POResolver.upsertPurchaseOrder",
+                  "name": "upsertPurchaseOrder",
+                  "method": "MUTATION",
+                  "apiPath": "/PurchaseOrder/"
+                },
+                {
+                  "id": "POResolver.updatePurchaseOrder",
+                  "name": "updatePurchaseOrder",
+                  "method": "MUTATION",
+                  "apiPath": "/PurchaseOrder/"
+                },
+                {
+                  "id": "POResolver.deletePurchaseOrderById",
+                  "name": "deletePurchaseOrderById",
+                  "method": "MUTATION",
+                  "apiPath": "/PurchaseOrder/"
+                },
+                {
+                  "id": "POResolver.closePurchaseOrdersById",
+                  "name": "closePurchaseOrdersById",
+                  "method": "MUTATION",
+                  "apiPath": "/PurchaseOrder/"
+                },
+                {
+                  "id": "POResolver.resendPurchaseOrderToMessageBroker",
+                  "name": "resendPurchaseOrderToMessageBroker",
+                  "method": "MUTATION",
+                  "apiPath": "/PurchaseOrder/"
+                },
+                {
+                  "id": "POResolver.deleteByPurchaseOrderNumber",
+                  "name": "deleteByPurchaseOrderNumber",
+                  "method": "MUTATION",
+                  "apiPath": "/PurchaseOrder/"
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/message-service/message.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/message-service/message.service.ts",
+          "name": "message.service",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/invoice-manager.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/services/invoices/types.ts"
+          ],
+          "exports": [
+            {
+              "id": "MessageService",
+              "name": "MessageService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "MessageService.pubSubHandler",
+                  "name": "pubSubHandler",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/logging/gql-logging.module.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/logging/gql-logging.module.ts",
+          "name": "gql-logging.module",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/logging/gql-logger.ts"
+          ],
+          "exports": [
+            {
+              "id": "GqlLoggingModule",
+              "name": "GqlLoggingModule",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "GqlLoggingModule.extractGQLParams",
+                  "name": "extractGQLParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GqlLoggingModule.toLoggingContext",
+                  "name": "toLoggingContext",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "GqlLoggingModule.forRoot",
+                  "name": "forRoot",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/logging.plugin.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/plugins/logging.plugin.ts",
+          "name": "logging.plugin",
+          "imports": [],
+          "exports": [
+            {
+              "id": "LoggingPlugin",
+              "name": "LoggingPlugin",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "LoggingPlugin.requestDidStart",
+                  "name": "requestDidStart",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/health-checks.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/health-checks.ts",
+          "name": "health-checks",
+          "imports": [],
+          "exports": [
+            {
+              "id": "RabbitMQHealthIndicator",
+              "name": "RabbitMQHealthIndicator",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "RabbitMQHealthIndicator.getQueuesInfo",
+                  "name": "getQueuesInfo",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "RabbitMQHealthIndicator.sanitizedCredentials",
+                  "name": "sanitizedCredentials",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "RabbitMQHealthIndicator.isHealthy",
+                  "name": "isHealthy",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "HealthChecksRegistrar",
+              "name": "HealthChecksRegistrar",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "HealthChecksRegistrar.onModuleInit",
+                  "name": "onModuleInit",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/graphql-types.config.js": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/graphql-types.config.js",
+          "name": "graphql-types.config.js",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/app.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/app.service.ts",
+          "name": "app.service",
+          "imports": [],
+          "exports": [
+            {
+              "id": "AppService",
+              "name": "AppService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "AppService.getData",
+                  "name": "getData",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/app.controller.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/app.controller.ts",
+          "name": "app.controller",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/po-service/src/app/app.service.ts"
+          ],
+          "exports": [
+            {
+              "id": "AppController",
+              "name": "AppController",
+              "apiPath": "/",
+              "members": [
+                {
+                  "id": "AppController.getData",
+                  "name": "getData",
+                  "method": "GET",
+                  "apiPath": "//"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "employees": {
+      "owner": "po-management",
+      "id": "employees",
+      "components": {
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/main.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/main.ts",
+          "name": "main",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/app.module.ts"
+          ],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/app.module.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/app.module.ts",
+          "name": "app.module",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/app.controller.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/app.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/graphql.resolver.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/graphql-types.config.js",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employee-store.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees-validator.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees-gateway-client.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/utils/redis.utils.ts"
+          ],
+          "exports": [
+            {
+              "id": "EmployeesModule",
+              "name": "EmployeesModule",
+              "apiPath": "",
+              "members": []
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/utils/redis.utils.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/utils/redis.utils.ts",
+          "name": "redis.utils",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/constants.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/types.ts"
+          ],
+          "exports": [
+            {
+              "id": "RedisTimeoutException",
+              "name": "RedisTimeoutException",
+              "apiPath": "",
+              "members": []
+            },
+            {
+              "id": "RedisUtils",
+              "name": "RedisUtils",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "RedisUtils.get",
+                  "name": "get",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "RedisUtils.set",
+                  "name": "set",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "RedisUtils.refreshCachedKey",
+                  "name": "refreshCachedKey",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "RedisUtils.getKeyTTL",
+                  "name": "getKeyTTL",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/types.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/types.ts",
+          "name": "types",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/common-types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/graphql.types.ts"
+          ],
+          "exports": [
+            {
+              "id": "EmployeeModel",
+              "name": "EmployeeModel",
+              "apiPath": "",
+              "members": []
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/graphql.types.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/graphql.types.ts",
+          "name": "graphql.types",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/common-types.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/common-types.ts",
+          "name": "common-types",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/constants.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/constants.ts",
+          "name": "constants",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees-gateway-client.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees-gateway-client.service.ts",
+          "name": "employees-gateway-client.service",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/queries.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/mutations.ts"
+          ],
+          "exports": [
+            {
+              "id": "EmployeesGatewayClientService",
+              "name": "EmployeesGatewayClientService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "EmployeesGatewayClientService.getUnremovableEmployeesIds",
+                  "name": "getUnremovableEmployeesIds",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesGatewayClientService.getSegmentsValues",
+                  "name": "getSegmentsValues",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesGatewayClientService.getEmployeesSegments",
+                  "name": "getEmployeesSegments",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesGatewayClientService.getAccountSubsidiaries",
+                  "name": "getAccountSubsidiaries",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesGatewayClientService.removeEmployeesFromCognito",
+                  "name": "removeEmployeesFromCognito",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesGatewayClientService.getErpEmployees",
+                  "name": "getErpEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesGatewayClientService.handleImportEmployeesSideEffects",
+                  "name": "handleImportEmployeesSideEffects",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/mutations.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/mutations.ts",
+          "name": "mutations",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/queries.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/queries.ts",
+          "name": "queries",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees-validator.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees-validator.service.ts",
+          "name": "employees-validator.service",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employee-store.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/utils/tree.utils.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees-gateway-client.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/constants.ts"
+          ],
+          "exports": [
+            {
+              "id": "EmployeesValidatorService",
+              "name": "EmployeesValidatorService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "EmployeesValidatorService.validate",
+                  "name": "validate",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "MandatoryFieldsValidator",
+              "name": "MandatoryFieldsValidator",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "MandatoryFieldsValidator.validate",
+                  "name": "validate",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "DuplicateListEmployeesValidator",
+              "name": "DuplicateListEmployeesValidator",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "DuplicateListEmployeesValidator.validate",
+                  "name": "validate",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "ListEmployeesRootValidator",
+              "name": "ListEmployeesRootValidator",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "ListEmployeesRootValidator.validate",
+                  "name": "validate",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "ListEmployeesUserIdEqualReportsToValidator",
+              "name": "ListEmployeesUserIdEqualReportsToValidator",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "ListEmployeesUserIdEqualReportsToValidator.validate",
+                  "name": "validate",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "ListEmployeesExistingAllReportsToValidator",
+              "name": "ListEmployeesExistingAllReportsToValidator",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "ListEmployeesExistingAllReportsToValidator.validate",
+                  "name": "validate",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "ListEmployeesTreeValidator",
+              "name": "ListEmployeesTreeValidator",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "ListEmployeesTreeValidator.validate",
+                  "name": "validate",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "DuplicateSystemEmployeesValidator",
+              "name": "DuplicateSystemEmployeesValidator",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "DuplicateSystemEmployeesValidator.validate",
+                  "name": "validate",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "RemovedEmployeesValidator",
+              "name": "RemovedEmployeesValidator",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "RemovedEmployeesValidator.validate",
+                  "name": "validate",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/utils/tree.utils.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/utils/tree.utils.ts",
+          "name": "tree.utils",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/types.ts"
+          ],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employee-store.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employee-store.ts",
+          "name": "employee-store",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/common-types.ts"
+          ],
+          "exports": [
+            {
+              "id": "InMemoryEmployeeStore",
+              "name": "InMemoryEmployeeStore",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "InMemoryEmployeeStore.addEmployee",
+                  "name": "addEmployee",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryEmployeeStore.getEmployeeById",
+                  "name": "getEmployeeById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryEmployeeStore.getEmployeeByEmail",
+                  "name": "getEmployeeByEmail",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryEmployeeStore.getEmployeesByAccountId",
+                  "name": "getEmployeesByAccountId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryEmployeeStore.getEmployeeByParams",
+                  "name": "getEmployeeByParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryEmployeeStore.getEmployeesByParams",
+                  "name": "getEmployeesByParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryEmployeeStore.updateEmployee",
+                  "name": "updateEmployee",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryEmployeeStore.upsertEmployee",
+                  "name": "upsertEmployee",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryEmployeeStore.changeOneByParams",
+                  "name": "changeOneByParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryEmployeeStore.upsertEmployees",
+                  "name": "upsertEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryEmployeeStore.inactivateEmployees",
+                  "name": "inactivateEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryEmployeeStore.changeEmployeesByParams",
+                  "name": "changeEmployeesByParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "InMemoryEmployeeStore.deleteByAccountId",
+                  "name": "deleteByAccountId",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            },
+            {
+              "id": "MongoEmployeeStore",
+              "name": "MongoEmployeeStore",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "MongoEmployeeStore.addEmployee",
+                  "name": "addEmployee",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoEmployeeStore.getEmployeeById",
+                  "name": "getEmployeeById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoEmployeeStore.getEmployeeByEmail",
+                  "name": "getEmployeeByEmail",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoEmployeeStore.getEmployeesByAccountId",
+                  "name": "getEmployeesByAccountId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoEmployeeStore.getEmployeeByParams",
+                  "name": "getEmployeeByParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoEmployeeStore.getEmployeesByParams",
+                  "name": "getEmployeesByParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoEmployeeStore.updateEmployee",
+                  "name": "updateEmployee",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoEmployeeStore.upsertEmployee",
+                  "name": "upsertEmployee",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoEmployeeStore.changeOneByParams",
+                  "name": "changeOneByParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoEmployeeStore.changeEmployeesByParams",
+                  "name": "changeEmployeesByParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoEmployeeStore.upsertEmployees",
+                  "name": "upsertEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoEmployeeStore.inactivateEmployees",
+                  "name": "inactivateEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "MongoEmployeeStore.deleteByAccountId",
+                  "name": "deleteByAccountId",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/graphql-types.config.js": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/graphql-types.config.js",
+          "name": "graphql-types.config.js",
+          "imports": [],
+          "exports": []
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees.service.ts",
+          "name": "employees.service",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/graphql.types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employee-store.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees-validator.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/utils/tree.utils.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees-gateway-client.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/utils/redis.utils.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/common-types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/types.ts"
+          ],
+          "exports": [
+            {
+              "id": "EmployeesService",
+              "name": "EmployeesService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "EmployeesService.generateEmployeeInternalId",
+                  "name": "generateEmployeeInternalId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.normalizeEmployees",
+                  "name": "normalizeEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.normalizeOrgTreeEmployees",
+                  "name": "normalizeOrgTreeEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.populateEmployeesWithSegments",
+                  "name": "populateEmployeesWithSegments",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.populateEmployees",
+                  "name": "populateEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.createEmployees",
+                  "name": "createEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.handleEmployeesCreation",
+                  "name": "handleEmployeesCreation",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.handleRemovedEmployees",
+                  "name": "handleRemovedEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.validateEmployees",
+                  "name": "validateEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.handleImportEmployees",
+                  "name": "handleImportEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.importEmployeesByCsv",
+                  "name": "importEmployeesByCsv",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.importEmployeesByErp",
+                  "name": "importEmployeesByErp",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.handleEmplyeesChanges",
+                  "name": "handleEmplyeesChanges",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.updateEmployee",
+                  "name": "updateEmployee",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.normalizeCustomFields",
+                  "name": "normalizeCustomFields",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.addEmployee",
+                  "name": "addEmployee",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.updateEmployeeList",
+                  "name": "updateEmployeeList",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.updateEmployee_internal",
+                  "name": "updateEmployee_internal",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.updateEmployeesActiveStatus_internal",
+                  "name": "updateEmployeesActiveStatus_internal",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.updateEmployeeActiveStatus",
+                  "name": "updateEmployeeActiveStatus",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.upsertEmployee",
+                  "name": "upsertEmployee",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.upsertEmployees",
+                  "name": "upsertEmployees",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.removeEmployeesByAccountId",
+                  "name": "removeEmployeesByAccountId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.addEmployee_internal",
+                  "name": "addEmployee_internal",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.getEmployeeByParams",
+                  "name": "getEmployeeByParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.getEmployeeById",
+                  "name": "getEmployeeById",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.getEmployeesByIds",
+                  "name": "getEmployeesByIds",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.getEmployeesByParams",
+                  "name": "getEmployeesByParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.getEmployeeByEmail",
+                  "name": "getEmployeeByEmail",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.getEmployeesByAccountId",
+                  "name": "getEmployeesByAccountId",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.changeOneByParams",
+                  "name": "changeOneByParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.changeEmployeesByParams",
+                  "name": "changeEmployeesByParams",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.buildEmployeesOrgTree",
+                  "name": "buildEmployeesOrgTree",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.getEmployeesOrgTree",
+                  "name": "getEmployeesOrgTree",
+                  "method": "",
+                  "apiPath": null
+                },
+                {
+                  "id": "EmployeesService.refreshEmployeesOrgTreeCache",
+                  "name": "refreshEmployeesOrgTreeCache",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/graphql.resolver.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/graphql.resolver.ts",
+          "name": "graphql.resolver",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/graphql.types.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/employees/employees.service.ts",
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/common-types.ts"
+          ],
+          "exports": [
+            {
+              "id": "GraphQLResolver",
+              "name": "GraphQLResolver",
+              "apiPath": "/Employee",
+              "members": [
+                {
+                  "id": "GraphQLResolver.getEffectiveAccountId",
+                  "name": "getEffectiveAccountId",
+                  "method": "",
+                  "apiPath": "/Employee"
+                },
+                {
+                  "id": "GraphQLResolver.getEmployeeById",
+                  "name": "getEmployeeById",
+                  "method": "QUERY",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.getEmployeeByEmail",
+                  "name": "getEmployeeByEmail",
+                  "method": "QUERY",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.getEmployeesByAccountId",
+                  "name": "getEmployeesByAccountId",
+                  "method": "QUERY",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.getEmployeesByIds",
+                  "name": "getEmployeesByIds",
+                  "method": "QUERY",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.getEmployeeByParams",
+                  "name": "getEmployeeByParams",
+                  "method": "QUERY",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.getEmployeesByParams",
+                  "name": "getEmployeesByParams",
+                  "method": "QUERY",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.getEmployeesOrgTree",
+                  "name": "getEmployeesOrgTree",
+                  "method": "QUERY",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.buildEmployeesOrgTree",
+                  "name": "buildEmployeesOrgTree",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.refreshEmployeesOrgTreeCache",
+                  "name": "refreshEmployeesOrgTreeCache",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.addEmployee_internal",
+                  "name": "addEmployee_internal",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.importEmployeesByCsvV2",
+                  "name": "importEmployeesByCsvV2",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.importEmployeesByErp",
+                  "name": "importEmployeesByErp",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.updateEmployee_internal",
+                  "name": "updateEmployee_internal",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.changeOneByParams",
+                  "name": "changeOneByParams",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.changeEmployeesByParams",
+                  "name": "changeEmployeesByParams",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.upsertEmployee",
+                  "name": "upsertEmployee",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.upsertEmployees",
+                  "name": "upsertEmployees",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.setEmployeesActiveStatus_internal",
+                  "name": "setEmployeesActiveStatus_internal",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.setEmployeeActiveStatus",
+                  "name": "setEmployeeActiveStatus",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.removeEmployeesByAccountIdV2",
+                  "name": "removeEmployeesByAccountIdV2",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.updateEmployee",
+                  "name": "updateEmployee",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                },
+                {
+                  "id": "GraphQLResolver.addEmployee",
+                  "name": "addEmployee",
+                  "method": "MUTATION",
+                  "apiPath": "/Employee/"
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/app.service.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/app.service.ts",
+          "name": "app.service",
+          "imports": [],
+          "exports": [
+            {
+              "id": "AppService",
+              "name": "AppService",
+              "apiPath": "",
+              "members": [
+                {
+                  "id": "AppService.getData",
+                  "name": "getData",
+                  "method": "",
+                  "apiPath": null
+                }
+              ]
+            }
+          ]
+        },
+        "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/app.controller.ts": {
+          "id": "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/app.controller.ts",
+          "name": "app.controller",
+          "imports": [
+            "/Users/bolshchikov/Documents/approve/approve-monorepo/apps/employees/src/app/app.service.ts"
+          ],
+          "exports": [
+            {
+              "id": "AppController",
+              "name": "AppController",
+              "apiPath": "/",
+              "members": [
+                {
+                  "id": "AppController.getData",
+                  "name": "getData",
+                  "method": "GET",
+                  "apiPath": "//"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
