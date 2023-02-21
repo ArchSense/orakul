@@ -24,14 +24,15 @@ program.command('nestjs')
       });
       const data = await scout.analyze();
       let outputPath = options.output;
-      console.log(outputPath);
       if (outputPath) {
         if (!path.isAbsolute(outputPath)) {
           outputPath = path.resolve(process.cwd(), outputPath);
         }
         await scout.saveToFile(outputPath, data);
+        console.log(`Output at ${outputPath} is created successfully`);
+      } else {
+        console.log(JSON.stringify(data));
       }
-      console.log(data);
     } catch (error) {
       console.error(error);
       process.exit(1);

@@ -14,8 +14,8 @@ type Params = {
 export class Scout {
   constructor(private params: Params) {
     this.validateParams();
-
   }
+
   private validateParams() {
     if (!this.params.configPath) {
       throw new Error('Path to config is not specified');

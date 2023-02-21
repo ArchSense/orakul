@@ -19,7 +19,7 @@ const nestjsScout = new Scout({
 });
 
 const dependencyTree = await nestjsScout.analyze();
-await nestjsScout.saveFile(dependencyTree);
+await nestjsScout.saveFile(outputFilePath, dependencyTree);
 ```
 
 ## Current support
