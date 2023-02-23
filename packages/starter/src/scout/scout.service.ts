@@ -12,7 +12,7 @@ export class ScoutService {
       configPath: this.configService.get('configPath'),
     });
   }
-  async getAnalytics() {
+  async getAnalysis() {
     if (this.tempResults) {
       return this.tempResults;
     }
