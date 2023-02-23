@@ -1,7 +1,7 @@
-import { useCallback, useRef, useState } from 'react';
+import { AnalysisResult } from '@archsense/scout/dist/types/output';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Node } from 'reactflow';
-import db from '../../fixtures/db.json';
-import { getSourceCode } from '../../services/api';
+import { getAnalysis, getSourceCode } from '../../services/api';
 import { defaultComment, generateNewClass } from '../Editor/codeTemplates';
 import Editor from '../Editor/Editor';
 import Scenarios from '../Scenarios/Scenarios';
@@ -22,11 +22,15 @@ function App() {
     onResizing
   } = useSplitPanel(paneContainer, paneLeft, paneRight);
 
-  const [activeScenario, setActiveScenario] = useState(undefined);
-  const [activeView, setActiveView] = useState(Levels.Domains);
-  const [breadcrumbs, setBreadcrumbs] = useState<string[]>([]);
+  const [activeView, setActiveView] = useState(Levels.Services);
+  const [selectedServiceId, setSelectedServiceId] = useState(null);
   const [sourceCode, setSourceCode] = useState('');
-  const scenarioClickHandler = ({ target }) => setActiveScenario(target.value);
+  const [analysisResults, setAnalysisResults] = useState<AnalysisResult>({});
+
+  useEffect(() => {
+    getAnalysis().then(setAnalysisResults);
+  }, []);
+
 
   const getSourceCodeForNode = async (node) => {
     try {
@@ -44,16 +48,10 @@ function App() {
     if (!nextView) {
       return;
     }
-    const nextBreadcrumbs: string[] = [];
-    if (activeView === Levels.Domains) {
-      nextBreadcrumbs[0] = nodeId;
-    }
     if (activeView === Levels.Services) {
-      nextBreadcrumbs[0] = breadcrumbs[0];
-      nextBreadcrumbs[1] = nodeId;
+      setSelectedServiceId(nodeId);
     }
     setActiveView(nextView);
-    setBreadcrumbs(nextBreadcrumbs);
   };
 
   const onNodeSelect = useCallback((node: Node) => {
@@ -77,33 +75,21 @@ function App() {
     }
   }, [onNodeSelect]);
 
-  const getCurrentCompany = () => {
-    return 'tipalti';
-  };
 
   const getSceneData = () => {
     switch (activeView) {
       case Levels.Components:
-        return db['services'][breadcrumbs[1]].components;
+        return analysisResults[selectedServiceId].components;
       case Levels.Services:
-        return db['domains'][breadcrumbs[0]]['services'].reduce((acc, serviceId) => {
-          acc[serviceId] = db.services[serviceId];
-          return acc;
-        }, {});
-      case Levels.Domains:
-        return db['companies'][getCurrentCompany()]['domains'].reduce((acc, domainId) => {
-          acc[domainId] = db.domains[domainId];
-          return acc;
-        }, {});
+        return analysisResults
       default:
-        break;
+        return {};
     }
   };
 
   const renderRelevantScene = () => {
     return (
       <Scene
-        activeScenario={activeScenario}
         data={getSceneData()}
         onNodeEnter={onNodeEnterHandler}
         onNodeSelect={onNodeSelectHandler}
@@ -116,7 +102,7 @@ function App() {
   return (
     <div className="App" ref={paneContainer} onMouseMove={onResizing} onMouseUp={onResizeEnd}>
       <aside className="Menu" ref={paneLeft}>
-        <Scenarios serviceId={activeView === Levels.Components && breadcrumbs[1]} onChange={scenarioClickHandler} />
+        <Scenarios serviceId={activeView === Levels.Components && selectedServiceId} components={analysisResults[selectedServiceId]?.components} />
       </aside>
       <div className="Splitter" data-index={0} onMouseDown={onResizeStart}></div>
       <main className="Main">

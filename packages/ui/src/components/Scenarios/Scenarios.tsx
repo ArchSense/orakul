@@ -1,19 +1,14 @@
-import db from '../../fixtures/db.json';
-
 const isController = (file) => file.name.endsWith('.controller');
 const isResolver = (file) => file.name.endsWith('.resolver');
 
-const Scenarios = ({ serviceId, onChange }) => {
+const Scenarios = ({ serviceId, components }) => {
   let controllers: any = [];
-  if (serviceId) {
-    const data = db.services[serviceId]?.components;
-    if (data) {
-      controllers = [
-        ...Object.values(data).filter(isController),
-        ...Object.values(data).filter(isResolver)
-      ]
-      controllers.sort((a, b) => a.name.localeCompare(b.name));
-    }
+  if (serviceId && components) {
+    controllers = [
+      ...Object.values(components).filter(isController),
+      ...Object.values(components).filter(isResolver)
+    ]
+    controllers.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   return (
@@ -32,14 +27,7 @@ const Scenarios = ({ serviceId, onChange }) => {
                 const scenario = `${member.method} ${isResolver({ name }) ? member.name : member.apiPath}`;
                 return (
                   <div key={scenario} className="ScenarioSelector">
-                    <input
-                      name="scenario-selector"
-                      id={scenario}
-                      type="radio"
-                      value={scenario}
-                      onClick={onChange}
-                    />
-                    <label htmlFor={scenario}>{scenario}</label>
+                    <span>{scenario}</span>
                   </div>
                 )
               })}

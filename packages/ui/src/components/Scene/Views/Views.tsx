@@ -1,27 +1,25 @@
 import './Views.css';
 
 export enum Levels {
-  Domains = 'Domains',
   Services = 'Services',
   Components = 'Components',
 };
 
-export const getNextLevel = (curr) => {
+export const getNextLevel = (curr: Levels) => {
   const stateMachine = {
-    [Levels.Domains]: Levels.Services,
     [Levels.Services]: Levels.Components,
     [Levels.Components]: null
   };
   return stateMachine[curr];
 };
 
-const isEnabled = (currentIdx, renderIdx) => {
+const isEnabled = (currentIdx: number, renderIdx: number) => {
   return currentIdx >= renderIdx;
 };
 
-const Views = ({ current, onChange }) => {
-  const onCLickHandler = (ev) => {
-    onChange(ev.target.value);
+const Views = ({ current, onChange }: {current: Levels, onChange: Function}) => {
+  const onClickHandler = (ev: React.MouseEvent) => {
+    onChange((ev.target as HTMLInputElement).value);
   };
   return (
     <div className="react-flow__panel bottom views">
@@ -33,7 +31,7 @@ const Views = ({ current, onChange }) => {
           }
           const disabled = !isEnabled(Object.values(Levels).indexOf(current), idx);
           return (
-            <button key={key} value={val} disabled={disabled} onClick={onCLickHandler} type="button" className={classNames.join(' ')}>{val}</button>
+            <button key={key} value={val} disabled={disabled} onClick={onClickHandler} type="button" className={classNames.join(' ')}>{val}</button>
           );
         })}
     </div>

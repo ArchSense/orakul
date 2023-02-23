@@ -8,7 +8,6 @@ import { buildPlannedNode } from './Node/Node';
 import OmniBar from './OmniBar/OmniBar';
 import PlannedNode from './PlannedNode/PlannedNode';
 import './Scene.css';
-import useAnimatedEdges from './useAnimatedEdges';
 import useAutoLayout from './useAutoLayout';
 import Views, { Levels } from './Views/Views';
 
@@ -52,8 +51,6 @@ const Scene = ({
     setEdges(initEdges);
   }, [view, setNodes, setEdges, data]);
 
-
-  useAnimatedEdges(activeScenario);
 
   const onNodeAddHandler = useCallback(() => {
     const name = window.prompt('Enter name');
@@ -115,7 +112,7 @@ const Scene = ({
   )
 };
 
-const SceneWrapper = (props) => {
+const SceneWrapper = (props: SceneProps) => {
   return (
     <ReactFlowProvider>
       <Scene {...props} />

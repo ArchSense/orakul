@@ -2,7 +2,7 @@ export const defaultComment = `
 /**
  * 
  * Hello, stranger!!
- * Welcome to Essence.io
+ * Welcome to ArchSense
  * 
  * I'm your navigator around the architecture
  * You can see the existing API surface and main building blocks.
