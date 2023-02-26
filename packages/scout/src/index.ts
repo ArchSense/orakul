@@ -6,9 +6,12 @@ import { Config } from './types/config';
 import { AnalysisResult } from './types/output';
 import { Path } from './types/path';
 
+export * from './types';
+
 type Params = {
   configPath: Path,
-  framework: 'nestjs' | 'react' | 'reactjs'
+  rootPath: Path,
+  framework: 'nestjs'
 };
 
 export class Scout {
@@ -17,8 +20,8 @@ export class Scout {
   }
 
   private validateParams() {
-    if (!this.params.configPath) {
-      throw new Error('Path to config is not specified');
+    if (!this.params.configPath && !this.params.rootPath) {
+      throw new Error('Path to config or to root project should be specified');
     }
   }
 
