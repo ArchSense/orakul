@@ -11,18 +11,18 @@ const getDirectories = async (source: string) => {
     .map(dirent => dirent.name)
 };
 
-const getAppsList = async (configPath: string, config: Config): Promise<string[]> => {
+const getAppsList = async (config: Config): Promise<string[]> => {
   if (config.include && config.include.length > 0) {
     return config.include;
   }
-  const folders = await getDirectories(`${configPath}/${config.src}`);
+  const folders = await getDirectories(config.src);
   return folders.filter(name => !(<string[]>config.exclude).includes(name));
 };
 
-export const getApps = async (configPath: string, config: Config): Promise<{ [name: AppName]: AppPath }> => {
-  const appsNames = await getAppsList(configPath, config);
+export const getApps = async (config: Config): Promise<{ [name: AppName]: AppPath }> => {
+  const appsNames = await getAppsList(config);
   return appsNames.reduce((acc, curr) => {
-    acc[curr] = path.resolve(configPath, config.src, curr, './src/main.ts');
+    acc[curr] = path.resolve(config.src, curr, './src/main.ts');
     return acc;
   }, {} as any);
 };

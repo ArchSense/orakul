@@ -1,4 +1,5 @@
 import path from 'path';
+import { Path } from '../types';
 import { Config } from '../types/config';
 
 const CONFIG_FILE_NAME = 'scout.json';
@@ -13,14 +14,26 @@ const isValidConfig = (config: Config): boolean => {
   return true;
 };
 
-const completeConfig = (config: Config): Config => {
+const completeConfig = (configPath: Path, config: Config): Config => {
   return {
     exclude: [],
     ...config,
+    src: path.resolve(configPath, config.src)
   }
 };
 
-const loadConfigFile = (root: string): Config => {
+const buildConfigFromSingleProject = (rootPath: Path): Config => {
+  const parts = rootPath.split(path.sep);
+  return {
+    id: 'single-project-app',
+    src: path.resolve(rootPath, '../'),
+    include: [
+      parts.at(-1) as string
+    ]
+  }
+};
+
+const loadConfigFile = (root: Path): Config => {
   let config;
   try {
     config = require(path.resolve(root, CONFIG_FILE_NAME));
@@ -30,10 +43,22 @@ const loadConfigFile = (root: string): Config => {
   return config;
 }
 
-export const getValidConfig = (root: string): Config | null => {
-  let config = loadConfigFile(root);
-  if (isValidConfig(config)) {
-    return completeConfig(config);
+/**
+ * 
+ * Returns the valid configuration whether from a file or a single project
+ * `config.src` should be absolute path
+ */
+export const getValidConfig = (configPath?: Path, rootPath?: Path): Config | null => {
+  let config: Config;
+  if (configPath) {
+    config = loadConfigFile(configPath);
+    if (isValidConfig(config)) {
+      return completeConfig(configPath, config);
+    }
+  }
+  if (rootPath) {
+    config = buildConfigFromSingleProject(rootPath);
+    return config;
   }
   return null;
 };

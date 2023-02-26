@@ -9,8 +9,8 @@ import { Path } from './types/path';
 export * from './types';
 
 type Params = {
-  configPath: Path,
-  rootPath: Path,
+  configPath?: Path,
+  rootPath?: Path,
   framework: 'nestjs'
 };
 
@@ -26,17 +26,17 @@ export class Scout {
   }
 
   private getConfig(): Config {
-    const config = getValidConfig(this.params.configPath);
+    const config = getValidConfig(this.params.configPath, this.params.rootPath);
     if (!config) {
-      throw new Error('Config file is not found in the root')
+      throw new Error('Could not find config');
     }
-    console.log('Found config:', JSON.stringify(config));
+    console.log('Running with config:', JSON.stringify(config));
     return config;
   }
 
   public async analyze(): Promise<AnalysisResult> {
     const config = this.getConfig();
-    const apps = await getApps(this.params.configPath, config);
+    const apps = await getApps(config);
     const res: AnalysisResult = {};
     for (let [name, path] of Object.entries(apps)) {
       const components = await buildStaticInsights(path);

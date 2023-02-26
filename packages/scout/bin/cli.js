@@ -14,13 +14,15 @@ program
 
 program.command('nestjs')
   .description('Generate insights for NestJs framework')
-  .argument('<config-file-path>', 'path to config file')
+  .option('-p, --project <root-file-path>', 'path to root project file')
+  .option('-c, --config <config-file-path>', 'path to config file')
   .option('-o, --output <output-file-path>', 'name of the output file')
-  .action(async (configPath, options) => {
+  .action(async (options) => {
     try {
       const scout = new Scout({
         framework: 'nestjs',
-        configPath
+        configPath: options.config,
+        rootPath: options.project
       });
       const data = await scout.analyze();
       let outputPath = options.output;
