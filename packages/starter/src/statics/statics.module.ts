@@ -5,7 +5,7 @@ import { join } from 'path';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(process.cwd(), './node_modules/@archsense/orakul-ui', './build'),
+      rootPath: join(process.cwd(), '../../', './node_modules/@archsense/orakul-ui', './build'),
     }),
   ],
 })

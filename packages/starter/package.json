@@ -1,6 +1,6 @@
 {
   "name": "@archsense/orakul-starter",
-  "version": "0.1.0",
+  "version": "0.1.0-rc.0",
   "description": "Visualize your architecture that make sense",
   "author": "Sergey Bolshchikov <sergey@bolshchikov.net>",
   "publishConfig": {
@@ -39,6 +39,7 @@
     "release": "npm run build && npm publish"
   },
   "dependencies": {
+    "@archsense/orakul-ui": "^0.1.0",
     "@archsense/scout": "^0.1.1",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",
