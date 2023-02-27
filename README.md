@@ -4,9 +4,25 @@
 
 ## How to use
 
-### 1. Add configuration files
+### Configure npm script for a project
 
-At the root of your project create the configuration file `scout.json` with the following properties:
+1. Install the dependency `npm install --save-dev @archsense/orakul`
+
+2. Configure npm script
+```json
+{
+  ...
+  "scripts": {
+    ...
+    "orakul": "npx orakul nestjs -p <path-to-root-folder>",
+    ...
+  }, 
+}
+```
+
+### Configuration file for monorepo
+
+1. At the root of your project create the configuration file `scout.json` with the following properties:
 ```json
 {  
   "id": "<project/domain-id>",
@@ -20,16 +36,13 @@ At the root of your project create the configuration file `scout.json` with the 
 }
 ```
 
-### 2. Configure npm script
-
-1. Install the dependency `npm install --save-dev @archsense/orakul`
 2. Configure npm script
 ```json
 {
   ...
   "scripts": {
     ...
-    "orakul": "npx orakul nestjs <config-to-path> -p <port>",
+    "orakul": "npx orakul nestjs -c <path-to-config-folder>",
     ...
   }, 
 }

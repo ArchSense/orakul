@@ -14,7 +14,7 @@
     "url": "https://github.com/ArchSense/orakul/issues"
   },
   "dependencies": {
-    "@archsense/scout": "^0.1.0",
+    "@archsense/scout": "^0.1.1",
     "@monaco-editor/react": "^4.4.6",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",

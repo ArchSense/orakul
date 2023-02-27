@@ -12,8 +12,8 @@
 #### Parameters
 | Parameter Name      | CLI Attribute | CLI shortcut | Mandatory | Description                                                                 |
 |---------------------|---------------|--------------|-----------|-----------------------------------------------------------------------------|
-| Path to root file   | --project     | -p           | Yes       | Path to the root project root file. It is disregarded if `config` is provided.                                          |
-| Path to config file | --config      | -c           | No        | If you'd like to run scout on monorepo, pass config instead of project root |
+| Path to root folder   | --project     | -p           | Yes       | Path to the root project root folder. It is disregarded if `config` is provided.                                          |
+| Path to config folder | --config      | -c           | No        | If you'd like to run scout on monorepo, pass config instead of project root |
 | Path to output file | --output      | -o           | No        | If provided, the result will the stored in the output file                  |
 
 ### API
@@ -21,8 +21,8 @@
 const Scout = require('scout');
 
 const nestjsScout = new Scout({
-  rootPath: '<path-to-root-file>',
-  configPath: '<path-to-config-file>',
+  rootPath: '<path-to-root-folder>',
+  configPath: '<path-to-config-folder>',
   framework: 'nestjs',
 });
 

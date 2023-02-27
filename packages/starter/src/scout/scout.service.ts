@@ -10,6 +10,7 @@ export class ScoutService {
     this.scout = new Scout({
       framework: this.configService.get('framework'),
       configPath: this.configService.get('configPath'),
+      rootPath: this.configService.get('rootPath'),
     });
   }
   async getAnalysis() {
