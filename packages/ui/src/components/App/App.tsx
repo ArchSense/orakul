@@ -1,4 +1,4 @@
-import { AnalysisResult } from '@archsense/scout/dist/types/output';
+import { AnalysisResult } from '@archsense/scout';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Node } from 'reactflow';
 import { getAnalysis, getSourceCode } from '../../services/api';

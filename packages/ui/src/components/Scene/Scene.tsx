@@ -51,7 +51,6 @@ const Scene = ({
     setEdges(initEdges);
   }, [view, setNodes, setEdges, data]);
 
-
   const onNodeAddHandler = useCallback(() => {
     const name = window.prompt('Enter name');
     if (!name) {
