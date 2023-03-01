@@ -28,7 +28,14 @@ function App() {
   const [analysisResults, setAnalysisResults] = useState<AnalysisResult>({});
 
   useEffect(() => {
-    getAnalysis().then(setAnalysisResults);
+    getAnalysis().then((analysis) => {
+      setAnalysisResults(analysis);
+      const projects = Object.keys(analysis);
+      if (projects.length === 1) {
+        setActiveView(Levels.Components);
+        setSelectedServiceId(projects[0]);
+      }
+    });
   }, []);
 
 
@@ -87,18 +94,6 @@ function App() {
     }
   };
 
-  const renderRelevantScene = () => {
-    return (
-      <Scene
-        data={getSceneData()}
-        onNodeEnter={onNodeEnterHandler}
-        onNodeSelect={onNodeSelectHandler}
-        onViewChange={setActiveView}
-        view={activeView}
-      />
-    );
-  }
-
   return (
     <div className="App" ref={paneContainer} onMouseMove={onResizing} onMouseUp={onResizeEnd}>
       <aside className="Menu" ref={paneLeft}>
@@ -106,7 +101,13 @@ function App() {
       </aside>
       <div className="Splitter" data-index={0} onMouseDown={onResizeStart}></div>
       <main className="Main">
-        {renderRelevantScene()}
+        <Scene
+          data={getSceneData()}
+          onNodeEnter={onNodeEnterHandler}
+          onNodeSelect={onNodeSelectHandler}
+          onViewChange={setActiveView}
+          view={activeView}
+        />
       </main>
       <div className="Splitter" data-index={1} onMouseDown={onResizeStart}></div>
       <aside className="Code" ref={paneRight}>
