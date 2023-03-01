@@ -47,3 +47,5 @@
   }, 
 }
 ```
+
+3. Go to [http://localhost:4501](http://localhost:4501) to see the visualization
