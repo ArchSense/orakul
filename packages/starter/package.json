@@ -1,11 +1,12 @@
 {
   "name": "@archsense/orakul-starter",
-  "version": "0.1.0-rc.1",
+  "version": "0.1.0",
   "description": "Visualize your architecture that make sense",
   "author": "Sergey Bolshchikov <sergey@bolshchikov.net>",
   "publishConfig": {
     "access": "public"
   },
+  "main": "./dist/main.js",
   "bin": {
     "orakul": "./bin/cli.js"
   },

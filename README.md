@@ -6,7 +6,7 @@
 
 ### Configure npm script for a project
 
-1. Install the dependency `npm install --save-dev @archsense/orakul`
+1. Install the dependency `npm install --save-dev @archsense/orakul-starter`
 
 2. Configure npm script
 ```json
