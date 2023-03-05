@@ -1,6 +1,6 @@
 {
   "name": "@archsense/orakul-starter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Visualize your architecture that make sense",
   "author": "Sergey Bolshchikov <sergey@bolshchikov.net>",
   "publishConfig": {
@@ -23,6 +23,10 @@
     "dist"
   ],
   "homepage": "https://github.com/ArchSense/orakul",
+  "keywords": [
+    "architecture",
+    "visualization"
+  ],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -40,7 +44,7 @@
     "release": "npm run build && npm publish"
   },
   "dependencies": {
-    "@archsense/orakul-ui": "^0.1.0",
+    "@archsense/orakul-ui": "^0.1.1",
     "@archsense/scout": "^0.1.1",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",
