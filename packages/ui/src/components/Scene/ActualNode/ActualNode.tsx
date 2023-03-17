@@ -1,7 +1,6 @@
 import { Handle, Position } from 'reactflow';
 import './ActualNode.css';
 
-
 const ClassNode = ({ data }) => {
   return (
     <>
@@ -12,18 +11,21 @@ const ClassNode = ({ data }) => {
       />
       <div>
         <b>{data.name}</b>
-        {data.members.length > 0 && <ul>
-          {data.members.map(({ name, id }) => <li key={id}>{name}</li>)}
-        </ul>}
+        {data.members.length > 0 && (
+          <ul>
+            {data.members.map(({ name, id }) => (
+              <li key={id}>{name}</li>
+            ))}
+          </ul>
+        )}
       </div>
       <Handle
         type="source"
         position={Position.Bottom}
         onConnect={(params) => console.log('handle onConnect', params)}
       />
-
     </>
   );
-}
+};
 
 export default ClassNode;

@@ -4,7 +4,7 @@ const SPLITTER_WIDTH = 2;
 
 const CSSValueToNumber = (value: string) => {
   return Number(value.replace('px', ''));
-}
+};
 
 const useSplitPanel = (containerRef, ...paneRefs) => {
   const isDragging = useRef(false);
@@ -32,7 +32,7 @@ const useSplitPanel = (containerRef, ...paneRefs) => {
     if (Number(activeSplitterIndex.current) === 1) {
       const minWidth = CSSValueToNumber(getComputedStyle(paneRefs[1].current).minWidth);
       const newWidth = containerRef.current.clientWidth - ev.clientX;
-      return newWidth < minWidth ? minWidth : newWidth
+      return newWidth < minWidth ? minWidth : newWidth;
     }
     return paneRefs[1].current.clientWidth;
   };
@@ -47,21 +47,21 @@ const useSplitPanel = (containerRef, ...paneRefs) => {
     const cols = [
       leftColWidth,
       SPLITTER_WIDTH,
-      container.clientWidth - (2 * SPLITTER_WIDTH) - leftColWidth - rightColWidth,
+      container.clientWidth - 2 * SPLITTER_WIDTH - leftColWidth - rightColWidth,
       SPLITTER_WIDTH,
-      rightColWidth
+      rightColWidth,
     ];
 
-    let newColDefinition = cols.map(c => `${c}px`).join(" ");
+    let newColDefinition = cols.map((c) => `${c}px`).join(' ');
     container.style.gridTemplateColumns = newColDefinition;
-    ev.preventDefault()
+    ev.preventDefault();
   };
 
   return {
     onResizeStart,
     onResizing,
-    onResizeEnd
-  }
+    onResizeEnd,
+  };
 };
 
 export default useSplitPanel;

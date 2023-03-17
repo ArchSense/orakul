@@ -1,7 +1,6 @@
 import { Handle, Position } from 'reactflow';
 import './PlannedNode.css';
 
-
 const PlannedNode = ({ data }) => {
   return (
     <>
@@ -18,9 +17,8 @@ const PlannedNode = ({ data }) => {
         position={Position.Bottom}
         onConnect={(params) => console.log('handle onConnect', params)}
       />
-
     </>
   );
-}
+};
 
 export default PlannedNode;

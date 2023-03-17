@@ -32,4 +32,4 @@ export const generateNewClass = (name: string) => {
     }
   }
   `;
-}
+};

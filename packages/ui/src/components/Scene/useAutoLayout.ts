@@ -63,7 +63,7 @@ function useAutoLayout(options: Options) {
           targetPosition: positionMap[direction[0]],
           position: { x, y },
         };
-      })
+      }),
     );
 
     setEdges((edges) => edges.map((edge) => ({ ...edge, style: { opacity: 1 } })));

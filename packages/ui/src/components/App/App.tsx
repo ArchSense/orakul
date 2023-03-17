@@ -2,12 +2,12 @@ import { AnalysisResult } from '@archsense/scout';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Node } from 'reactflow';
 import { getAnalysis, getSourceCode } from '../../services/api';
+import { getNextLevel, Levels } from '../../services/levels';
 import { defaultComment, generateNewClass } from '../Editor/codeTemplates';
 import Editor from '../Editor/Editor';
 import Scenarios from '../Scenarios/Scenarios';
 import { SceneNodeType } from '../Scene/Node/Node';
 import Scene from '../Scene/Scene';
-import { getNextLevel, Levels } from '../Scene/Views/Views';
 import './App.css';
 import useSplitPanel from './useSplitPanel';
 
@@ -16,11 +16,11 @@ function App() {
   const paneLeft = useRef(null);
   const paneRight = useRef(null);
 
-  const {
-    onResizeEnd,
-    onResizeStart,
-    onResizing
-  } = useSplitPanel(paneContainer, paneLeft, paneRight);
+  const { onResizeEnd, onResizeStart, onResizing } = useSplitPanel(
+    paneContainer,
+    paneLeft,
+    paneRight,
+  );
 
   const [activeView, setActiveView] = useState(Levels.Services);
   const [selectedServiceId, setSelectedServiceId] = useState(null);
@@ -37,7 +37,6 @@ function App() {
       }
     });
   }, []);
-
 
   const getSourceCodeForNode = async (node) => {
     try {
@@ -74,21 +73,24 @@ function App() {
     return setSourceCode(defaultComment);
   };
 
-  const onNodeSelectHandler = useCallback((node: Node | undefined) => {
-    if (node) {
-      onNodeSelect(node);
-    } else {
-      onNodeDeselect();
-    }
-  }, [onNodeSelect]);
-
+  const onNodeSelectHandler = useCallback(
+    (node: Node | undefined) => {
+      if (node) {
+        onNodeSelect(node);
+      } else {
+        onNodeDeselect();
+      }
+    },
+    [onNodeSelect],
+  );
 
   const getSceneData = () => {
     switch (activeView) {
       case Levels.Components:
+      case Levels.Modules:
         return analysisResults[selectedServiceId].components;
       case Levels.Services:
-        return analysisResults
+        return analysisResults;
       default:
         return {};
     }
@@ -97,7 +99,10 @@ function App() {
   return (
     <div className="App" ref={paneContainer} onMouseMove={onResizing} onMouseUp={onResizeEnd}>
       <aside className="Menu" ref={paneLeft}>
-        <Scenarios serviceId={activeView === Levels.Components && selectedServiceId} components={analysisResults[selectedServiceId]?.components} />
+        <Scenarios
+          serviceId={activeView === Levels.Components && selectedServiceId}
+          components={analysisResults[selectedServiceId]?.components}
+        />
       </aside>
       <div className="Splitter" data-index={0} onMouseDown={onResizeStart}></div>
       <main className="Main">

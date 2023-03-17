@@ -6,8 +6,8 @@ const Scenarios = ({ serviceId, components }) => {
   if (serviceId && components) {
     controllers = [
       ...Object.values(components).filter(isController),
-      ...Object.values(components).filter(isResolver)
-    ]
+      ...Object.values(components).filter(isResolver),
+    ];
     controllers.sort((a, b) => a.name.localeCompare(b.name));
   }
 
@@ -22,17 +22,18 @@ const Scenarios = ({ serviceId, components }) => {
         return (
           <div key={idx}>
             <h5>{name}</h5>
-            {members
-              .map(member => {
-                const scenario = `${member.method} ${isResolver({ name }) ? member.name : member.apiPath}`;
-                return (
-                  <div key={scenario} className="ScenarioSelector">
-                    <span>{scenario}</span>
-                  </div>
-                )
-              })}
+            {members.map((member) => {
+              const scenario = `${member.method} ${
+                isResolver({ name }) ? member.name : member.apiPath
+              }`;
+              return (
+                <div key={scenario} className="ScenarioSelector">
+                  <span>{scenario}</span>
+                </div>
+              );
+            })}
           </div>
-        )
+        );
       })}
     </>
   );

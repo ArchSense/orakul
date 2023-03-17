@@ -69,6 +69,7 @@
     ]
   },
   "devDependencies": {
-    "@types/dagre": "^0.7.48"
+    "@types/dagre": "^0.7.48",
+    "prettier": "^2.8.4"
   }
 }

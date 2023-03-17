@@ -1,16 +1,14 @@
 export enum SceneNodeType {
   PLANNED = 'planned',
-  ACTUAL = 'actual'
-};
+  ACTUAL = 'actual',
+}
 
 const paintClass = (fileName) => {
   const parts = fileName.split(/(?=[A-Z])/);
-  const type = parts.at(-1) ? parts.at(-1).toLowerCase() : void 0
+  const type = parts.at(-1) ? parts.at(-1).toLowerCase() : void 0;
   switch (type) {
     case 'controller':
       return '#3b5bdbbf';
-    case 'module':
-      return 'transparent';
     case 'service':
       return '#3cd93cbd';
     default:
@@ -29,11 +27,10 @@ export const buildActualNode = ({ data, id }) => {
     className: 'ActualNode',
     style: {
       background: paintClass(data?.name),
-    }
+    },
   };
   return newNode;
 };
-
 
 export const buildPlannedNode = ({ data }) => {
   const newNode = {
@@ -44,15 +41,15 @@ export const buildPlannedNode = ({ data }) => {
     selectable: true,
     deletable: true,
     className: 'PlannedNode',
-    style: {}
+    style: {},
   };
   return newNode;
 };
 
 export const buildAbstractNode = (id, label) => {
-  return ({
+  return {
     id,
     position: { x: -100, y: -100 },
     data: { label },
-  });
+  };
 };
