@@ -7,4 +7,4 @@ import { ScoutService } from './scout.service';
   providers: [ScoutService],
   exports: [ScoutService],
 })
-export class ScoutModule { }
+export class ScoutModule {}

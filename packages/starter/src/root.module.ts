@@ -18,4 +18,4 @@ import { StaticsModule } from './statics/statics.module';
   controllers: [],
   providers: [],
 })
-export class RootModule { }
+export class RootModule {}

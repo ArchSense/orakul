@@ -5,7 +5,7 @@ import { ScoutService } from 'src/scout/scout.service';
 
 @Controller('api')
 export class ApiController {
-  constructor(private scoutService: ScoutService) { }
+  constructor(private scoutService: ScoutService) {}
 
   @Get('/analysis')
   async fetchAnalysis() {
