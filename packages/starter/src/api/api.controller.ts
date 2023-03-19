@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Post } from '@nestjs/common';
 import { readFile } from 'fs/promises';
 import { resolve } from 'path';
 import { ScoutService } from 'src/scout/scout.service';
@@ -9,8 +9,15 @@ export class ApiController {
 
   @Get('/analysis')
   async fetchAnalysis() {
-    const res = await this.scoutService.getAnalysis();
-    return res;
+    try {
+      const res = await this.scoutService.getAnalysis();
+      return res;
+    } catch (error) {
+      throw new BadRequestException(error.message, {
+        cause: new Error(),
+        description: 'Error during parsing',
+      });
+    }
   }
 
   @Post('/source-code')
