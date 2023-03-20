@@ -3,7 +3,18 @@ import path from 'path';
 import ts, { SyntaxKind } from 'typescript';
 import { ParsedResult, StaticDependenciesTree } from '../types/output';
 
-const readFile = (path: string) => fs.readFileSync(path, { encoding: 'utf-8' });
+const readFile = (filePath: string): string => {
+  console.log(filePath);
+  let res: string = '';
+  try {
+    res = fs.readFileSync(filePath, { encoding: 'utf-8' })
+  } catch (error) {
+    const ext = path.extname(filePath);
+    const newPath = filePath.replace(ext, `/index${ext}`);
+    res = fs.readFileSync(newPath, { encoding: 'utf-8' })
+  }
+  return res;
+};
 
 const isLocalImport = (name: string) => name.startsWith('.') || name.startsWith('src/');
 
