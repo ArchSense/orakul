@@ -4,7 +4,6 @@ import ts, { SyntaxKind } from 'typescript';
 import { ParsedResult, StaticDependenciesTree } from '../types/output';
 
 const readFile = (filePath: string): string => {
-  console.log(filePath);
   let res: string = '';
   try {
     res = fs.readFileSync(filePath, { encoding: 'utf-8' })
