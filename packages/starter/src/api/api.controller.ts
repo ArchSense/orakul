@@ -1,7 +1,7 @@
 import { BadRequestException, Body, Controller, Get, Post } from '@nestjs/common';
 import { readFile } from 'fs/promises';
 import { resolve } from 'path';
-import { ScoutService } from 'src/scout/scout.service';
+import { ScoutService } from '../scout/scout.service';
 
 @Controller('api')
 export class ApiController {

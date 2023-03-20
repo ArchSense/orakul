@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ScoutModule } from 'src/scout/scout.module';
+import { ScoutModule } from '../scout/scout.module';
 import { ApiController } from './api.controller';
 
 @Module({
