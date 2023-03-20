@@ -26,7 +26,7 @@ const buildConfigFromSingleProject = (rootPath: Path): Config => {
   const parts = rootPath.split(path.sep);
   return {
     id: 'single-project-app',
-    src: path.resolve(rootPath, '../'),
+    src: path.resolve(process.cwd(), rootPath),
     include: [
       parts.at(-1) as string
     ]
