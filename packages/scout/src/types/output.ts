@@ -12,18 +12,18 @@ export type ParsedResult = {
     apiPath?: string;
     members?: {
       id: string;
-      name?: string
-      method?: string
+      name?: string;
+      method?: string;
       apiPath?: string;
-    }[]
-  }[]
+    }[];
+  }[];
 };
 
 export type StaticDependenciesTree = Map<FileIdentifier, ParsedResult>;
 
 export type AnalysisResult = {
   [key: AppName]: {
-    id: AppName,
-    components: { [key: FileIdentifier]: ParsedResult }
-  }
-}
+    id: AppName;
+    components: { [key: FileIdentifier]: ParsedResult };
+  };
+};

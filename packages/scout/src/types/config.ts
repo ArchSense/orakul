@@ -3,7 +3,7 @@ import { Path } from './path';
 
 export type Config = {
   id: string;
-  src: Path,
-  include?: AppName[],
-  exclude?: AppName[],
+  src: Path;
+  include?: AppName[];
+  exclude?: AppName[];
 };

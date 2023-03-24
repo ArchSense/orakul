@@ -9,9 +9,9 @@ import { Path } from './types/path';
 export * from './types';
 
 type Params = {
-  configPath?: Path,
-  rootPath?: Path,
-  framework: 'nestjs'
+  configPath?: Path;
+  rootPath?: Path;
+  framework: 'nestjs';
 };
 
 export class Scout {
@@ -42,8 +42,8 @@ export class Scout {
       const components = await buildStaticInsights(path);
       res[name] = {
         id: name,
-        components: Object.fromEntries(components)
-      }
+        components: Object.fromEntries(components),
+      };
     }
     return res;
   }

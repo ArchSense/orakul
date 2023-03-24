@@ -18,8 +18,8 @@ const completeConfig = (configPath: Path, config: Config): Config => {
   return {
     exclude: [],
     ...config,
-    src: path.resolve(configPath, config.src)
-  }
+    src: path.resolve(configPath, config.src),
+  };
 };
 
 const buildConfigFromSingleProject = (rootPath: Path): Config => {
@@ -27,10 +27,8 @@ const buildConfigFromSingleProject = (rootPath: Path): Config => {
   return {
     id: 'single-project-app',
     src: path.resolve(process.cwd(), rootPath),
-    include: [
-      parts.at(-1) as string
-    ]
-  }
+    include: [parts.at(-1) as string],
+  };
 };
 
 const loadConfigFile = (root: Path): Config => {
@@ -41,10 +39,10 @@ const loadConfigFile = (root: Path): Config => {
     throw new Error('Config file is not found in the root');
   }
   return config;
-}
+};
 
 /**
- * 
+ *
  * Returns the valid configuration whether from a file or a single project
  * `config.src` should be absolute path
  */

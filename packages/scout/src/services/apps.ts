@@ -7,8 +7,8 @@ export type AppPath = string;
 
 const getDirectories = async (source: string) => {
   return (await readdir(source, { withFileTypes: true }))
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name)
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => dirent.name);
 };
 
 const getAppsList = async (config: Config): Promise<string[]> => {
@@ -16,7 +16,7 @@ const getAppsList = async (config: Config): Promise<string[]> => {
     return config.include;
   }
   const folders = await getDirectories(config.src);
-  return folders.filter(name => !(<string[]>config.exclude).includes(name));
+  return folders.filter((name) => !(<string[]>config.exclude).includes(name));
 };
 
 export const getApps = async (config: Config): Promise<{ [name: AppName]: AppPath }> => {

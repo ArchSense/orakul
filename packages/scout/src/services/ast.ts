@@ -6,32 +6,24 @@ import { ParsedResult, StaticDependenciesTree } from '../types/output';
 const readFile = (filePath: string): string => {
   let res: string = '';
   try {
-    res = fs.readFileSync(filePath, { encoding: 'utf-8' })
+    res = fs.readFileSync(filePath, { encoding: 'utf-8' });
   } catch (error) {
     const ext = path.extname(filePath);
     const newPath = filePath.replace(ext, `/index${ext}`);
-    res = fs.readFileSync(newPath, { encoding: 'utf-8' })
+    res = fs.readFileSync(newPath, { encoding: 'utf-8' });
   }
   return res;
 };
 
 const isLocalImport = (name: string) => name.startsWith('.') || name.startsWith('src/');
 
-const buildAst = (fileName: string, fileContent: string) => ts.createSourceFile(
-  fileName,
-  fileContent,
-  ts.ScriptTarget.ES2015,
-);
+const buildAst = (fileName: string, fileContent: string) =>
+  ts.createSourceFile(fileName, fileContent, ts.ScriptTarget.ES2015);
 
 const removeQuotes = (name: string) => {
   const isNotQuote = (char: string) => char !== '"' && char !== "'";
   const isNotBreakLine = (char: string) => char !== '\n';
-  return name
-    .trim()
-    .split('')
-    .filter(isNotQuote)
-    .filter(isNotBreakLine)
-    .join('');
+  return name.trim().split('').filter(isNotQuote).filter(isNotBreakLine).join('');
 };
 
 const hasDuplicate = (collection: any[], target: string) => {
@@ -42,13 +34,13 @@ const hasDuplicate = (collection: any[], target: string) => {
     return collection.some(({ id }) => target === id);
   }
   return collection.includes(target);
-}
+};
 
 const buildEmptyRecord = (id: string): ParsedResult => ({
   id,
   name: path.basename(id, '.ts'),
   imports: [],
-  exports: []
+  exports: [],
 });
 
 const isExported = (node: ts.Node) => {
@@ -60,7 +52,7 @@ const isExported = (node: ts.Node) => {
 };
 
 /**
- * 
+ *
  * Example: @Controller('invoices'), @Put()
  */
 const tokenizeDecorator = (decorator: string): [verb: string, path: string] | null => {
@@ -92,10 +84,12 @@ const getControllerPath = (node: ts.ClassDeclaration, sourceFile: ts.SourceFile)
 };
 
 const getControllerHandler = (node: ts.ClassElement, sourceFile: ts.SourceFile) => {
-  const knownVerbs = ['Put', 'Get', 'Post', 'Delete', 'Patch', 'Query', 'Mutation'].map(v => `@${v}`);
+  const knownVerbs = ['Put', 'Get', 'Post', 'Delete', 'Patch', 'Query', 'Mutation'].map(
+    (v) => `@${v}`,
+  );
   const isAPIHandlerDecorator = (dec: ts.Decorator) => {
     const text = removeQuotes(dec.getText(sourceFile));
-    return knownVerbs.some(v => text.startsWith(v));
+    return knownVerbs.some((v) => text.startsWith(v));
   };
   const apiDecorator = ts.getDecorators(node as any)?.find(isAPIHandlerDecorator);
   if (!apiDecorator) {
@@ -112,14 +106,18 @@ const getControllerHandler = (node: ts.ClassElement, sourceFile: ts.SourceFile) 
 
 const hasAllowedFileExtension = (path: string) => {
   const exts = ['.js', '.ts'];
-  return exts.some(ext => path.endsWith(ext));
+  return exts.some((ext) => path.endsWith(ext));
 };
 
 export const buildStaticInsights = (root: string): StaticDependenciesTree => {
   const paths = [root];
   const graph: StaticDependenciesTree = new Map();
 
-  const handleImportDeclaration = (currentPath: string, node: ts.ImportDeclaration, sourceFile: ts.SourceFile) => {
+  const handleImportDeclaration = (
+    currentPath: string,
+    node: ts.ImportDeclaration,
+    sourceFile: ts.SourceFile,
+  ) => {
     const newRawPath = removeQuotes(node.moduleSpecifier.getFullText(sourceFile));
     if (isLocalImport(newRawPath)) {
       const ext = hasAllowedFileExtension(newRawPath) ? '' : '.ts';
@@ -130,7 +128,11 @@ export const buildStaticInsights = (root: string): StaticDependenciesTree => {
       }
     }
   };
-  const handleClassDeclaration = (currentPath: string, node: ts.ClassDeclaration, sourceFile: ts.SourceFile) => {
+  const handleClassDeclaration = (
+    currentPath: string,
+    node: ts.ClassDeclaration,
+    sourceFile: ts.SourceFile,
+  ) => {
     if (!isExported(node)) {
       return;
     }
@@ -150,9 +152,11 @@ export const buildStaticInsights = (root: string): StaticDependenciesTree => {
               id: `${className}.${member.name?.getText(sourceFile)}`,
               name: member.name?.getText(sourceFile),
               method: api ? api[0].toUpperCase() : '',
-              apiPath: api ? getControllerPath(node, sourceFile) as string + api[1] : getControllerPath(node, sourceFile) as string
-            }
-          })
+              apiPath: api
+                ? (getControllerPath(node, sourceFile) as string) + api[1]
+                : (getControllerPath(node, sourceFile) as string),
+            };
+          }),
       });
     }
   };
@@ -174,7 +178,7 @@ export const buildStaticInsights = (root: string): StaticDependenciesTree => {
       const fileContent = readFile(currentPath);
       const sourceFile = buildAst(currentPath, fileContent);
 
-      ts.forEachChild(sourceFile, node => {
+      ts.forEachChild(sourceFile, (node) => {
         switch (node.kind) {
           case SyntaxKind.ImportDeclaration:
             handleImportDeclaration(currentPath, <ts.ImportDeclaration>node, sourceFile);
@@ -189,8 +193,6 @@ export const buildStaticInsights = (root: string): StaticDependenciesTree => {
       console.log(`Current graph: `, graph);
       throw new Error(`Error in file: ${currentPath}`);
     }
-
-
   }
   return graph;
-}
+};
