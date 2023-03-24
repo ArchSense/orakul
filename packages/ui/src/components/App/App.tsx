@@ -32,7 +32,7 @@ function App() {
       setAnalysisResults(analysis);
       const projects = Object.keys(analysis);
       if (projects.length === 1) {
-        setActiveView(Levels.Components);
+        setActiveView(Levels.Modules);
         setSelectedServiceId(projects[0]);
       }
     });
