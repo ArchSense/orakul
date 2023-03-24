@@ -49,3 +49,10 @@
 ```
 
 3. Go to [http://localhost:4501](http://localhost:4501) to see the visualization
+
+## Why Orakul
+
+1. Just CLI command - no additional code required
+1. Support of NestJs microservices
+1. Different levels of visualizations: modules level and low level
+1. See only what you are interested in
