@@ -23,11 +23,11 @@ const completeConfig = (configPath: Path, config: Config): Config => {
 };
 
 const buildConfigFromSingleProject = (rootPath: Path): Config => {
-  const parts = rootPath.split(path.sep);
   return {
     id: 'single-project-app',
     src: path.resolve(process.cwd(), rootPath),
-    include: [parts.at(-1) as string],
+    include: ['.'],
+    exclude: []
   };
 };
 
