@@ -1,18 +1,19 @@
-import fs from 'fs';
+import { readFile } from 'fs/promises';
 import path from 'path';
 import ts, { SyntaxKind } from 'typescript';
 import { ParsedResult, StaticDependenciesTree } from '../types/output';
 
-const readFile = (filePath: string): string => {
+const getFileContent = async (filePath: string): Promise<string> => {
   let res: string = '';
   try {
-    res = fs.readFileSync(filePath, { encoding: 'utf-8' });
+    res = await readFile(filePath, { encoding: 'utf-8' });
   } catch (error) {
     const ext = path.extname(filePath);
     const newPath = filePath.replace(ext, `/index${ext}`);
-    res = fs.readFileSync(newPath, { encoding: 'utf-8' });
+    res = await readFile(newPath, { encoding: 'utf-8' });
+  } finally {
+    return res;
   }
-  return res;
 };
 
 const isLocalImport = (name: string) => name.startsWith('.') || name.startsWith('src/');
@@ -109,7 +110,7 @@ const hasAllowedFileExtension = (path: string) => {
   return exts.some((ext) => path.endsWith(ext));
 };
 
-export const buildStaticInsights = (root: string): StaticDependenciesTree => {
+export const buildStaticInsights = async (root: string): Promise<StaticDependenciesTree> => {
   const paths = [root];
   const graph: StaticDependenciesTree = new Map();
 
@@ -175,7 +176,7 @@ export const buildStaticInsights = (root: string): StaticDependenciesTree => {
     }
 
     try {
-      const fileContent = readFile(currentPath);
+      const fileContent = await getFileContent(currentPath);
       const sourceFile = buildAst(currentPath, fileContent);
 
       ts.forEachChild(sourceFile, (node) => {
