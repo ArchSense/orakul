@@ -1,40 +1,29 @@
-import { readFile } from 'fs/promises';
 import path from 'path';
-import ts, { SyntaxKind } from 'typescript';
+import { Project, SourceFile, Decorator, MethodDeclaration } from 'ts-morph';
 import { ParsedResult, StaticDependenciesTree } from '../types/output';
 
-const getFileContent = async (filePath: string): Promise<string> => {
-  let res: string = '';
-  try {
-    res = await readFile(filePath, { encoding: 'utf-8' });
-  } catch (error) {
-    const ext = path.extname(filePath);
-    const newPath = filePath.replace(ext, `/index${ext}`);
-    res = await readFile(newPath, { encoding: 'utf-8' });
-  } finally {
-    return res;
+const TS_CONFIG_FILE_NAME = 'tsconfig.json';
+const SUPPORTED_CLASS_DECORATORS = ['Controller', 'Resolver'];
+const KNOWN_API_VERBS = ['Put', 'Get', 'Post', 'Delete', 'Patch', 'Query', 'Mutation'];
+
+const getClosestTsConfigFile = (
+  projectRootDirectoryPath: string,
+): { content: any; path: string } => {
+  // no recursion if file is not found or file is not a valid json
+  const MAX_ATTEMPTS = 8;
+  let current = 0;
+  let currentPath = projectRootDirectoryPath;
+  while (current < MAX_ATTEMPTS) {
+    try {
+      const tsConfigFilePath = path.resolve(currentPath, TS_CONFIG_FILE_NAME);
+      const res = require(tsConfigFilePath);
+      return { content: res, path: tsConfigFilePath };
+    } catch (error) {
+      currentPath = path.resolve(currentPath, '../');
+      current++;
+    }
   }
-};
-
-const isLocalImport = (name: string) => name.startsWith('.') || name.startsWith('src/');
-
-const buildAst = (fileName: string, fileContent: string) =>
-  ts.createSourceFile(fileName, fileContent, ts.ScriptTarget.ES2015);
-
-const removeQuotes = (name: string) => {
-  const isNotQuote = (char: string) => char !== '"' && char !== "'";
-  const isNotBreakLine = (char: string) => char !== '\n';
-  return name.trim().split('').filter(isNotQuote).filter(isNotBreakLine).join('');
-};
-
-const hasDuplicate = (collection: any[], target: string) => {
-  if (!collection || collection.length === 0) {
-    return false;
-  }
-  if (typeof collection[0] === 'object') {
-    return collection.some(({ id }) => target === id);
-  }
-  return collection.includes(target);
+  throw new Error(`Could not find valid ${TS_CONFIG_FILE_NAME} file`);
 };
 
 const buildEmptyRecord = (id: string): ParsedResult => ({
@@ -44,156 +33,122 @@ const buildEmptyRecord = (id: string): ParsedResult => ({
   exports: [],
 });
 
-const isExported = (node: ts.Node) => {
-  const modifiers = ts.canHaveModifiers(node) ? ts.getModifiers(node) : undefined;
-  if (!modifiers || modifiers.length === 0) {
-    return false;
-  }
-  return modifiers.some(({ kind }) => SyntaxKind.ExportKeyword === kind);
+const removeQuotes = (name: string) => {
+  const isNotQuote = (char: string) => char !== '"' && char !== "'";
+  const isNotBreakLine = (char: string) => char !== '\n';
+  return name.trim().split('').filter(isNotQuote).filter(isNotBreakLine).join('');
 };
 
-/**
- *
- * Example: @Controller('invoices'), @Put()
- */
-const tokenizeDecorator = (decorator: string): [verb: string, path: string] | null => {
-  const decoratorRegEx = /@(.*)\((.*)\)/g;
-  const groups = decoratorRegEx.exec(decorator);
-  if (groups) {
-    return [groups[1], removeQuotes(groups[2])];
+const getApiHandlerPath = (decorator: Decorator): string => {
+  const args = decorator.getArguments();
+  if (args.length) {
+    const arg = removeQuotes(args[0].getText());
+    return arg.startsWith('/') ? arg : `/${arg}`;
   }
-  return null;
+  return '/';
 };
 
-const getControllerPath = (node: ts.ClassDeclaration, sourceFile: ts.SourceFile): string | null => {
-  const isControllerOrResolver = (dec: ts.Decorator) => {
-    const cleanText = removeQuotes(dec.getText(sourceFile));
-    return cleanText.startsWith('@Controller') || cleanText.startsWith('@Resolver');
+const getApiHandlerMethod = (
+  method: MethodDeclaration,
+  ctrlPath: string,
+): { apiPath: string; method: string } => {
+  const decorators = method
+    .getDecorators()
+    .filter((decorator) => KNOWN_API_VERBS.includes(decorator.getName()));
+  if (decorators.length === 0) {
+    return {
+      method: '',
+      apiPath: '',
+    };
+  }
+  const decorator = decorators[0];
+  return {
+    apiPath: `${ctrlPath}${getApiHandlerPath(decorator)}`,
+    method: decorator.getName().toUpperCase(),
   };
-  const ctrlDecorator = ts.getDecorators(node)?.find(isControllerOrResolver);
-  if (!ctrlDecorator) {
-    return null;
-  }
-  const text = ctrlDecorator.getText(sourceFile);
-
-  const tokens = tokenizeDecorator(text);
-  if (!tokens) {
-    return null;
-  }
-  const [, path] = tokens;
-  return path ? `/${path}` : '/';
 };
 
-const getControllerHandler = (node: ts.ClassElement, sourceFile: ts.SourceFile) => {
-  const knownVerbs = ['Put', 'Get', 'Post', 'Delete', 'Patch', 'Query', 'Mutation'].map(
-    (v) => `@${v}`,
-  );
-  const isAPIHandlerDecorator = (dec: ts.Decorator) => {
-    const text = removeQuotes(dec.getText(sourceFile));
-    return knownVerbs.some((v) => text.startsWith(v));
-  };
-  const apiDecorator = ts.getDecorators(node as any)?.find(isAPIHandlerDecorator);
-  if (!apiDecorator) {
-    return null;
-  }
-  const text = apiDecorator.getText(sourceFile);
-  const tokens = tokenizeDecorator(text);
-  if (!tokens) {
-    return null;
-  }
-  const [verb, path] = tokens;
-  return [verb, path.startsWith('/') ? path : `/${path}`];
-};
-
-const hasAllowedFileExtension = (path: string) => {
-  const exts = ['.js', '.ts'];
-  return exts.some((ext) => path.endsWith(ext));
-};
-
-export const buildStaticInsights = async (root: string): Promise<StaticDependenciesTree> => {
-  const paths = [root];
+export const buildStaticInsights = async (
+  projectRootFilePath: string,
+): Promise<StaticDependenciesTree> => {
   const graph: StaticDependenciesTree = new Map();
+  const cache: { [filePath: string]: SourceFile } = {}; // reading source file from the disk every time is expensive
 
-  const handleImportDeclaration = (
-    currentPath: string,
-    node: ts.ImportDeclaration,
-    sourceFile: ts.SourceFile,
-  ) => {
-    const newRawPath = removeQuotes(node.moduleSpecifier.getFullText(sourceFile));
-    if (isLocalImport(newRawPath)) {
-      const ext = hasAllowedFileExtension(newRawPath) ? '' : '.ts';
-      const newPath = path.join(path.parse(currentPath).dir, newRawPath) + ext;
-      paths.push(newPath);
-      if (!hasDuplicate(graph.get(currentPath)?.imports ?? [], newPath)) {
-        graph.get(currentPath)?.imports.push(newPath);
-      }
-    }
-  };
-  const handleClassDeclaration = (
-    currentPath: string,
-    node: ts.ClassDeclaration,
-    sourceFile: ts.SourceFile,
-  ) => {
-    if (!isExported(node)) {
-      return;
-    }
-    const classId = node.name?.getText(sourceFile);
-    const className = node.name?.getText(sourceFile);
+  const { content: tsConfig, path: tsConfigFilePath } = getClosestTsConfigFile(
+    path.parse(projectRootFilePath).dir,
+  );
 
-    if (classId && !hasDuplicate(graph.get(currentPath)?.exports ?? [], classId)) {
-      graph.get(currentPath)?.exports.push({
-        id: classId,
-        name: className,
-        apiPath: getControllerPath(node, sourceFile) ?? '',
-        members: node.members
-          .filter(({ kind }) => SyntaxKind.MethodDeclaration === kind)
-          .map((member) => {
-            const api = getControllerHandler(member, sourceFile);
+  const project = new Project({
+    tsConfigFilePath,
+  });
+
+  if (tsConfig.extends) {
+    project.addSourceFilesFromTsConfig(
+      path.resolve(
+        tsConfigFilePath,
+        '../', // skip one more level because of tsconfig.json
+        tsConfig.extends,
+      ),
+    );
+  }
+
+  const queue = [projectRootFilePath];
+
+  while (queue.length) {
+    const filePath = queue.pop() as string;
+
+    if (graph.has(filePath)) {
+      // already processed this file, avoid circular imports
+      continue;
+    } else {
+      graph.set(filePath, buildEmptyRecord(filePath));
+    }
+    const sourceFile = cache[filePath] ?? project.getSourceFile(filePath);
+
+    if (!sourceFile) {
+      console.warn('Could not find source file for ', filePath);
+    }
+
+    sourceFile
+      ?.getImportDeclarations()
+      .map((declaration) => declaration.getModuleSpecifierSourceFile())
+      .filter((sf) => sf && !sf.isFromExternalLibrary())
+      .forEach((sf) => {
+        const dependencyPath = sf?.getFilePath();
+        if (!dependencyPath) {
+          return;
+        }
+        cache[dependencyPath] = sf as SourceFile;
+        graph.get(filePath)?.imports.push(dependencyPath);
+        queue.push(dependencyPath);
+      });
+
+    sourceFile
+      ?.getClasses()
+      .filter((cls) => cls.getExportKeyword())
+      .forEach((cls) => {
+        const className = cls.getName() as string;
+        const apiHandler = cls
+          .getDecorators()
+          .filter((d) => SUPPORTED_CLASS_DECORATORS.includes(d.getName()));
+
+        const apiPath = apiHandler.length > 0 ? getApiHandlerPath(apiHandler[0]) : '';
+
+        graph.get(filePath)?.exports.push({
+          id: className,
+          apiPath,
+          name: className,
+          members: [...cls.getInstanceMethods(), ...cls.getStaticMethods()].map((method) => {
+            const methodName = method.getName();
+            const apiHandlerProps = getApiHandlerMethod(method, apiPath);
             return {
-              id: `${className}.${member.name?.getText(sourceFile)}`,
-              name: member.name?.getText(sourceFile),
-              method: api ? api[0].toUpperCase() : '',
-              apiPath: api
-                ? (getControllerPath(node, sourceFile) as string) + api[1]
-                : (getControllerPath(node, sourceFile) as string),
+              id: `${className}.${methodName}`,
+              name: methodName,
+              ...apiHandlerProps,
             };
           }),
+        });
       });
-    }
-  };
-
-  while (paths.length) {
-    const currentPath = paths.pop();
-    if (currentPath === undefined) {
-      continue;
-    }
-    // To avoid loops
-    if (graph.has(currentPath)) {
-      continue;
-    }
-    if (!graph.has(currentPath)) {
-      graph.set(currentPath, buildEmptyRecord(currentPath));
-    }
-
-    try {
-      const fileContent = await getFileContent(currentPath);
-      const sourceFile = buildAst(currentPath, fileContent);
-
-      ts.forEachChild(sourceFile, (node) => {
-        switch (node.kind) {
-          case SyntaxKind.ImportDeclaration:
-            handleImportDeclaration(currentPath, <ts.ImportDeclaration>node, sourceFile);
-            break;
-          case SyntaxKind.ClassDeclaration:
-            handleClassDeclaration(currentPath, <ts.ClassDeclaration>node, sourceFile);
-            break;
-        }
-      });
-    } catch (error) {
-      console.error(error);
-      console.log(`Current graph: `, graph);
-      throw new Error(`Error in file: ${currentPath}`);
-    }
   }
   return graph;
 };

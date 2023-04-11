@@ -27,7 +27,7 @@ const buildConfigFromSingleProject = (rootPath: Path): Config => {
     id: 'single-project-app',
     src: path.resolve(process.cwd(), rootPath),
     include: ['.'],
-    exclude: []
+    exclude: [],
   };
 };
 
