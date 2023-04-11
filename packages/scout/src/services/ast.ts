@@ -1,5 +1,7 @@
+import { readFileSync } from 'fs';
 import path from 'path';
-import { Project, SourceFile, Decorator, MethodDeclaration } from 'ts-morph';
+import { Decorator, MethodDeclaration, Project, SourceFile } from 'ts-morph';
+import ts from 'typescript';
 import { ParsedResult, StaticDependenciesTree } from '../types/output';
 
 const TS_CONFIG_FILE_NAME = 'tsconfig.json';
@@ -16,8 +18,9 @@ const getClosestTsConfigFile = (
   while (current < MAX_ATTEMPTS) {
     try {
       const tsConfigFilePath = path.resolve(currentPath, TS_CONFIG_FILE_NAME);
-      const res = require(tsConfigFilePath);
-      return { content: res, path: tsConfigFilePath };
+      const res = readFileSync(tsConfigFilePath, { encoding: 'utf-8' });
+      const { config } = ts.parseConfigFileTextToJson(TS_CONFIG_FILE_NAME, res);
+      return { content: config, path: tsConfigFilePath };
     } catch (error) {
       currentPath = path.resolve(currentPath, '../');
       current++;
