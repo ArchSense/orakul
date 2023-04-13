@@ -75,7 +75,6 @@ export const buildStaticInsights = async (
   projectRootFilePath: string,
 ): Promise<StaticDependenciesTree> => {
   const graph: StaticDependenciesTree = new Map();
-  const cache: { [filePath: string]: SourceFile } = {}; // reading source file from the disk every time is expensive
 
   const { content: tsConfig, path: tsConfigFilePath } = getClosestTsConfigFile(
     path.parse(projectRootFilePath).dir,
@@ -83,17 +82,8 @@ export const buildStaticInsights = async (
 
   const project = new Project({
     tsConfigFilePath,
+    skipAddingFilesFromTsConfig: true,
   });
-
-  if (tsConfig.extends) {
-    project.addSourceFilesFromTsConfig(
-      path.resolve(
-        tsConfigFilePath,
-        '../', // skip one more level because of tsconfig.json
-        tsConfig.extends,
-      ),
-    );
-  }
 
   const queue = [projectRootFilePath];
 
@@ -106,7 +96,8 @@ export const buildStaticInsights = async (
     } else {
       graph.set(filePath, buildEmptyRecord(filePath));
     }
-    const sourceFile = cache[filePath] ?? project.getSourceFile(filePath);
+
+    const sourceFile = project.addSourceFileAtPathIfExists(filePath);
 
     if (!sourceFile) {
       console.warn('Could not find source file for ', filePath);
@@ -121,7 +112,6 @@ export const buildStaticInsights = async (
         if (!dependencyPath) {
           return;
         }
-        cache[dependencyPath] = sf as SourceFile;
         graph.get(filePath)?.imports.push(dependencyPath);
         queue.push(dependencyPath);
       });
